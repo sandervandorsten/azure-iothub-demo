@@ -1,0 +1,12 @@
+#!/bin/bash
+RG="iot-rpi-02"
+
+az group create \
+    --name $RG \
+    --location westeurope
+
+az deployment group create \
+    --resource-group $RG \
+    --name $(uuidgen) \
+    --template-file "./deployment.json" \
+    --parameters @./deployment.parameters.json
