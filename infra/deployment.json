@@ -169,10 +169,39 @@
                     "name": "Transformation",
                     "properties": {
                         "streamingUnits": "[parameters('numberOfStreamingUnits')]",
-                        "query": "SELECT\r\n    *\r\nINTO\r\n    [YourOutputAlias]\r\nFROM\r\n    [YourInputAlias]"
+                        "query": "SELECT\r\n    *\r\nINTO\r\n    [YourOutputAlias]\r\nFROM\r\n    iothub"
                     }
                 }
-            }
+            },
+            "resources": [
+                {
+                    "type": "inputs",
+                    "apiVersion": "2016-03-01",
+                    "name": "iothub",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamAnalyticsJobName'))]"
+                    ],
+                    "properties": {
+                        "type": "Stream",
+                        "datasource": {
+                            "type": "Microsoft.Devices/IotHubs",
+                            "properties": {
+                                "iotHubNamespace": "[parameters('iotHubName')]",
+                                "sharedAccessPolicyName": "service",
+                                "endpoint": "messages/events",
+                                "consumerGroupName": "$Default",
+                                "sharedAccessPolicyKey": "[listkeys(resourceId('Microsoft.Devices/IotHubs/IotHubKeys',parameters('iotHubName'), 'service'),'2018-04-01').primaryKey]"
+                            }
+                        },
+                        "serialization": {
+                            "type": "Json",
+                            "properties": {
+                                "encoding": "UTF8"
+                            }
+                        }
+                    }
+                }
+            ]
         }
     ],
     "outputs": {}
