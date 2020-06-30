@@ -43,10 +43,38 @@
             "metadata": {
                 "description": "Specifies the number of provisioned IoT Hub units. Restricted to 1 unit for the F1 SKU. Can be set up to maximum number allowed for subscription."
             }
+        },
+        "streamAnalyticsJobName": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 63,
+            "metadata": {
+                "description": "Stream Analytics Job Name, can contain alphanumeric characters and hypen and must be 3-63 characters long"
+            }
+        },
+        "numberOfStreamingUnits": {
+            "type": "int",
+            "minValue": 1,
+            "maxValue": 48,
+            "allowedValues": [
+                1,
+                3,
+                6,
+                12,
+                18,
+                24,
+                30,
+                36,
+                42,
+                48
+            ],
+            "metadata": {
+                "description": "Number of Streaming Units"
+            }
         }
     },
     "variables": {
-        "consumerGroupName": "[concat(parameters('iotHubName'), '/events/cg1')]"
+        "consumerGroupName": "[concat(parameters('iotHubName'), '/events/ConsumerGroup1')]"
     },
     "functions": [],
     "resources": [
@@ -87,6 +115,10 @@
                     "events": {
                         "retentionTimeInDays": 1,
                         "partitionCount": 2
+                    },
+                    "operationsMonitoringEvents": {
+                        "retentionTimeInDays": 1,
+                        "partitionCount": 2
                     }
                 },
                 "cloudToDevice": {
@@ -118,6 +150,29 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Devices/IotHubs', parameters('iotHubName'))]"
             ]
+        },
+        {
+            "type": "Microsoft.StreamAnalytics/StreamingJobs",
+            "apiVersion": "2019-06-01",
+            "name": "[parameters('streamAnalyticsJobName')]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "sku": {
+                    "name": "standard"
+                },
+                "outputErrorPolicy": "stop",
+                "eventsOutOfOrderPolicy": "adjust",
+                "eventsOutOfOrderMaxDelayInSeconds": 0,
+                "eventsLateArrivalMaxDelayInSeconds": 5,
+                "dataLocale": "en-US",
+                "transformation": {
+                    "name": "Transformation",
+                    "properties": {
+                        "streamingUnits": "[parameters('numberOfStreamingUnits')]",
+                        "query": "SELECT\r\n    *\r\nINTO\r\n    [YourOutputAlias]\r\nFROM\r\n    [YourInputAlias]"
+                    }
+                }
+            }
         }
     ],
     "outputs": {}

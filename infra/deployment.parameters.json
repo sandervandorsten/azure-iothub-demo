@@ -16,6 +16,12 @@
         },
         "capacityUnits": {
             "value": 1
+        },
+        "streamAnalyticsJobName": {
+            "value": "svd-streaming-rpi-01"
+        },
+        "numberOfStreamingUnits": {
+            "value": 1
         }
     }
 }
