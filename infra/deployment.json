@@ -200,6 +200,38 @@
                             }
                         }
                     }
+                },
+                {
+                    "type": "outputs",
+                    "apiVersion": "2016-03-01",
+                    "name": "blobstorage",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamAnalyticsJobName'))]"
+                    ],
+                    "properties": {
+                        "datasource": {
+                            "type": "Microsoft.Storage/Blob",
+                            "properties": {
+                                "storageAccounts": [
+                                    {
+                                        "accountName": "[parameters('storageAccountName')]",
+                                        "accountKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName')),'2019-06-01').keys[0].value]"
+                                    }
+                                ],
+                                "container": "[parameters('containerName')]",
+                                "pathPattern": "{date}",
+                                "dateFormat": "yyyy/MM/dd",
+                                "timeFormat": "HH"
+                            }
+                        },
+                        "serialization": {
+                            "type": "Json",
+                            "properties": {
+                                "encoding": "UTF8",
+                                "format": "LineSeparated"
+                            }
+                        }
+                    }
                 }
             ]
         }
