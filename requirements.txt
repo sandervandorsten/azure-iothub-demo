@@ -1,0 +1,3 @@
+azure-iot-device>=2.1.3
+azure-eventhub>=5.1.0
+python-dotenv>=0.13.0
