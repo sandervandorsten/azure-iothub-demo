@@ -7,6 +7,15 @@
         },
         "containerName": {
             "value": "rpi-temperature"
+        },
+        "iotHubName": {
+            "value": "svd-iothub-rpi-02"
+        },
+        "skuName": {
+            "value": "S1"
+        },
+        "capacityUnits": {
+            "value": 1
         }
     }
 }
