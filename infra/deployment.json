@@ -83,11 +83,25 @@
             "metadata": {
                 "description": "Number of Streaming Units"
             }
+        },
+        "functionAppName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of you Function App Site."
+            }
+        },
+        "serverfarmName": {
+            "type": "string",
+            "defaultValue": "WestEuropeLinuxDynamicPlan",
+            "metadata": {
+                "description": "The name of you serverfarm."
+            }
         }
     },
     "variables": {
         "consumerGroupName": "[concat(parameters('iotHubName'), '/events/ConsumerGroup1')]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
+        "storageAccountid": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
         "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('defaultSASKeyName'))]",
         "serviceBusVersion": "2017-04-01"
     },
@@ -337,6 +351,52 @@
                     }
                 }
             ]
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2019-08-01",
+            "name": "[parameters('functionAppName')]",
+            "kind": "functionapp,linux",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarmName'))]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+            ],
+            "properties": {
+                "name": "[parameters('functionAppName')]",
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "FUNCTIONS_WORKER_RUNTIME",
+                            "value": "python"
+                        },
+                        {
+                            "name": "FUNCTIONS_EXTENSION_VERSION",
+                            "value": "~2"
+                        },
+                        {
+                            "name": "AzureWebJobsStorage",
+                            "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2019-06-01').keys[0].value)]"
+                        }
+                    ]
+                },
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('serverfarmName'))]",
+                "clientAffinityEnabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2019-08-01",
+            "name": "[parameters('serverfarmName')]",
+            "location": "[parameters('location')]",
+            "kind": "linux",
+            "properties": {
+                "reserved": true
+            },
+            "sku": {
+                "Tier": "Dynamic",
+                "Name": "Y1"
+            }
         }
     ],
     "outputs": {

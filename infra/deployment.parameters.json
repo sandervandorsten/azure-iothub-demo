@@ -28,6 +28,9 @@
         },
         "serviceBusQueueName": {
             "value": "temperature"
+        },
+        "functionAppName": {
+            "value": "svd-rpi-functionapp-01"
         }
     }
 }
