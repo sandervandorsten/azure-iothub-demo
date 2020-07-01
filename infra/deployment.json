@@ -102,6 +102,7 @@
         "consumerGroupName": "[concat(parameters('iotHubName'), '/events/ConsumerGroup1')]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
         "storageAccountid": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
+        "serviceBusListenid": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), 'listen')]",
         "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('defaultSASKeyName'))]",
         "serviceBusVersion": "2017-04-01"
     },
@@ -377,6 +378,10 @@
                         {
                             "name": "AzureWebJobsStorage",
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2019-06-01').keys[0].value)]"
+                        },
+                        {
+                            "name": "svdrpisb01_SERVICEBUS",
+                            "value": "[concat('Endpoint=sb://', parameters('serviceBusNamespaceName'), '.servicebus.windows.net/;SharedAccessKeyName=listen;SharedAccessKey=', listKeys(variables('serviceBusListenid'), variables('serviceBusVersion')).primaryKey)]"
                         }
                     ]
                 },

@@ -7,6 +7,15 @@
             "label": "Azure Deploy",
             "type": "shell",
             "command": "cd infra && sh deploy.azcli"
+        },
+        {
+            "type": "func",
+            "command": "host start",
+            "problemMatcher": "$func-watch",
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceFolder}/src/azure_functions"
+            }
         }
     ]
 }
