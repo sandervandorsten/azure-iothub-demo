@@ -44,6 +44,18 @@
                 "description": "Specifies the number of provisioned IoT Hub units. Restricted to 1 unit for the F1 SKU. Can be set up to maximum number allowed for subscription."
             }
         },
+        "serviceBusNamespaceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Service Bus namespace"
+            }
+        },
+        "serviceBusQueueName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Queue"
+            }
+        },
         "streamAnalyticsJobName": {
             "type": "string",
             "minLength": 3,
@@ -74,7 +86,10 @@
         }
     },
     "variables": {
-        "consumerGroupName": "[concat(parameters('iotHubName'), '/events/ConsumerGroup1')]"
+        "consumerGroupName": "[concat(parameters('iotHubName'), '/events/ConsumerGroup1')]",
+        "defaultSASKeyName": "RootManageSharedAccessKey",
+        "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('defaultSASKeyName'))]",
+        "serviceBusVersion": "2017-04-01"
     },
     "functions": [],
     "resources": [
@@ -149,6 +164,39 @@
             "name": "[variables('consumerGroupName')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Devices/IotHubs', parameters('iotHubName'))]"
+            ]
+        },
+        {
+            "apiVersion": "[variables('serviceBusVersion')]",
+            "name": "[parameters('serviceBusNamespaceName')]",
+            "type": "Microsoft.ServiceBus/namespaces",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "Standard"
+            },
+            "properties": {},
+            "resources": [
+                {
+                    "apiVersion": "[variables('serviceBusVersion')]",
+                    "name": "[parameters('serviceBusQueueName')]",
+                    "type": "Queues",
+                    "dependsOn": [
+                        "[concat('Microsoft.ServiceBus/namespaces/', parameters('serviceBusNamespaceName'))]"
+                    ],
+                    "properties": {
+                        "lockDuration": "PT5M",
+                        "maxSizeInMegabytes": "1024",
+                        "requiresDuplicateDetection": "false",
+                        "requiresSession": "false",
+                        "defaultMessageTimeToLive": "P10675199DT2H48M5.4775807S",
+                        "deadLetteringOnMessageExpiration": "false",
+                        "duplicateDetectionHistoryTimeWindow": "PT10M",
+                        "maxDeliveryCount": "10",
+                        "autoDeleteOnIdle": "P10675199DT2H48M5.4775807S",
+                        "enablePartitioning": "false",
+                        "enableExpress": "false"
+                    }
+                }
             ]
         },
         {
@@ -236,5 +284,14 @@
             ]
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "NamespaceConnectionString": {
+            "type": "string",
+            "value": "[listkeys(variables('authRuleResourceId'), variables('serviceBusVersion')).primaryConnectionString]"
+        },
+        "SharedAccessPolicyPrimaryKey": {
+            "type": "string",
+            "value": "[listkeys(variables('authRuleResourceId'), variables('serviceBusVersion')).primaryKey]"
+        }
+    }
 }

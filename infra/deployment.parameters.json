@@ -3,13 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "storageAccountName": {
-            "value": "svdiotrpi02"
+            "value": "svdrpistorage01"
         },
         "containerName": {
-            "value": "rpi-temperature"
+            "value": "temperature"
         },
         "iotHubName": {
-            "value": "svd-iothub-rpi-02"
+            "value": "svd-rpi-iothub-01"
         },
         "skuName": {
             "value": "S1"
@@ -18,10 +18,16 @@
             "value": 1
         },
         "streamAnalyticsJobName": {
-            "value": "svd-streaming-rpi-01"
+            "value": "svd-rpi-streaming-01"
         },
         "numberOfStreamingUnits": {
             "value": 1
+        },
+        "serviceBusNamespaceName": {
+            "value": "svd-rpi-sb-01"
+        },
+        "serviceBusQueueName": {
+            "value": "temperature"
         }
     }
 }
