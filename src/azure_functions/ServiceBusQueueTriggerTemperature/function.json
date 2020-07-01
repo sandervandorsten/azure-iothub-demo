@@ -6,7 +6,7 @@
       "type": "serviceBusTrigger",
       "direction": "in",
       "queueName": "temperature",
-      "connection": "svdrpisb01_SERVICEBUS"
+      "connection": "connectionStringListenServiceBus"
     }
   ]
 }

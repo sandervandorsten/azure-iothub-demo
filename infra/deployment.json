@@ -101,10 +101,12 @@
     "variables": {
         "consumerGroupName": "[concat(parameters('iotHubName'), '/events/ConsumerGroup1')]",
         "defaultSASKeyName": "RootManageSharedAccessKey",
+        "iotHubServiceid": "[resourceId('Microsoft.Devices/IotHubs/IotHubKeys',parameters('iotHubName'), 'service')]",
         "storageAccountid": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]",
         "serviceBusListenid": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), 'listen')]",
         "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('defaultSASKeyName'))]",
-        "serviceBusVersion": "2017-04-01"
+        "serviceBusVersion": "2017-04-01",
+        "iotHubApiVersion": "2018-04-01"
     },
     "functions": [],
     "resources": [
@@ -380,8 +382,12 @@
                             "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', parameters('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2019-06-01').keys[0].value)]"
                         },
                         {
-                            "name": "svdrpisb01_SERVICEBUS",
+                            "name": "connectionStringListenServiceBus",
                             "value": "[concat('Endpoint=sb://', parameters('serviceBusNamespaceName'), '.servicebus.windows.net/;SharedAccessKeyName=listen;SharedAccessKey=', listKeys(variables('serviceBusListenid'), variables('serviceBusVersion')).primaryKey)]"
+                        },
+                        {
+                            "name": "connectionStringIotHub",
+                            "value": "[concat('HostName=', parameters('iotHubName'), '.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=', listKeys(variables('iotHubServiceid'), variables('iotHubApiVersion')).primaryKey)]"
                         }
                     ]
                 },
