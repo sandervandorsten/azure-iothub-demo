@@ -1,5 +1,5 @@
 #!/bin/bash
-RG="iot-rpi-02"
+RG="svd-rpi-01"
 
 az group create \
     --name $RG \

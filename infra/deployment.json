@@ -252,6 +252,33 @@
                 {
                     "type": "outputs",
                     "apiVersion": "2016-03-01",
+                    "name": "servicebus",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamAnalyticsJobName'))]"
+                    ],
+                    "properties": {
+                        "datasource": {
+                            "type": "Microsoft.ServiceBus/Queue",
+                            "properties": {
+                                "queueName": "[parameters('serviceBusQueueName')]",
+                                "propertyColumns": [],
+                                "serviceBusNamespace": "[parameters('serviceBusNamespaceName')]",
+                                "sharedAccessPolicyName": "RootManageSharedAccessKey",
+                                "sharedAccessPolicyKey": "[listKeys(variables('authRuleResourceId'), variables('serviceBusVersion')).primaryKey]"
+                            }
+                        },
+                        "serialization": {
+                            "type": "Json",
+                            "properties": {
+                                "encoding": "UTF8",
+                                "format": "LineSeparated"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "outputs",
+                    "apiVersion": "2016-03-01",
                     "name": "blobstorage",
                     "dependsOn": [
                         "[resourceId('Microsoft.StreamAnalytics/streamingjobs', parameters('streamAnalyticsJobName'))]"
