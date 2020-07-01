@@ -196,6 +196,34 @@
                         "enablePartitioning": "false",
                         "enableExpress": "false"
                     }
+                },
+                {
+                    "type": "AuthorizationRules",
+                    "apiVersion": "[variables('serviceBusVersion')]",
+                    "name": "listen",
+                    "location": "West Europe",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusNamespaceName'))]"
+                    ],
+                    "properties": {
+                        "rights": [
+                            "Listen"
+                        ]
+                    }
+                },
+                {
+                    "type": "AuthorizationRules",
+                    "apiVersion": "[variables('serviceBusVersion')]",
+                    "name": "send",
+                    "location": "West Europe",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.ServiceBus/namespaces', parameters('serviceBusNamespaceName'))]"
+                    ],
+                    "properties": {
+                        "rights": [
+                            "Send"
+                        ]
+                    }
                 }
             ]
         },
@@ -217,7 +245,7 @@
                     "name": "Transformation",
                     "properties": {
                         "streamingUnits": "[parameters('numberOfStreamingUnits')]",
-                        "query": "SELECT\r\n    *\r\nINTO\r\n    [YourOutputAlias]\r\nFROM\r\n    iothub"
+                        "query": "SELECT\r\n    *\r\nINTO\r\n    blobstorage\r\nFROM\r\n    iothub\n\nSELECT\r\n    *\r\nINTO\r\n    servicebus\r\nFROM\r\n    iothub\r\nWHERE\r\n    temperature > 29"
                     }
                 }
             },
@@ -263,8 +291,8 @@
                                 "queueName": "[parameters('serviceBusQueueName')]",
                                 "propertyColumns": [],
                                 "serviceBusNamespace": "[parameters('serviceBusNamespaceName')]",
-                                "sharedAccessPolicyName": "RootManageSharedAccessKey",
-                                "sharedAccessPolicyKey": "[listKeys(variables('authRuleResourceId'), variables('serviceBusVersion')).primaryKey]"
+                                "sharedAccessPolicyName": "send",
+                                "sharedAccessPolicyKey": "[listKeys(resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), 'send'), variables('serviceBusVersion')).primaryKey]"
                             }
                         },
                         "serialization": {
