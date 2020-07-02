@@ -28,7 +28,8 @@ DEVICE_ID = os.getenv("DEVICE_ID")
 
 
 def iothub_devicemethod_sample_run(
-    callback_method: str = "SetTelemetryInterval", callback_payload: Any = 10
+    callback_method: str = "set_telemetry_interval",
+    callback_payload: dict = {"telemetry_interval": 10},
 ):
     try:
         # Create IoTHubRegistryManager
@@ -50,10 +51,10 @@ def iothub_devicemethod_sample_run(
 
         input("Press Enter to continue...\n")
 
-    except Exception as ex:
-        print("")
-        print("Unexpected error {0}".format(ex))
-        return
+    # except Exception as ex:
+    #     print("")
+    #     print("Unexpected error {0}".format(ex))
+    #     return
     except KeyboardInterrupt:
         print("")
         print("IoTHubDeviceMethod sample stopped")
