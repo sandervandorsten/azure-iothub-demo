@@ -1,16 +1,11 @@
-# Copyright (c) Microsoft. All rights reserved.
-# Licensed under the MIT license. See LICENSE file in the project root for full license information.
+"""Simulate a cloud-to-device message to a Azure Iothub device."""
 
 # Using the Python Device SDK for IoT Hub:
 #   https://github.com/Azure/azure-iot-sdk-python
-# The sample connects to a device-specific HTTP endpoint on your IoT Hub.
 import sys
 import os
 import dotenv
 import fire
-from typing import Any
-
-# pylint: disable=E0611
 
 from azure.iot.hub import IoTHubRegistryManager
 from azure.iot.hub.models import CloudToDeviceMethod, CloudToDeviceMethodResult
@@ -24,13 +19,16 @@ dotenv.load_dotenv()
 CONNECTION_STRING = os.getenv("CONNECTION_STRING_IOT_HUB")
 DEVICE_ID = os.getenv("DEVICE_ID")
 
-# Details of the direct method to call.
-
 
 def iothub_devicemethod_sample_run(
-    callback_method: str = "set_telemetry_interval",
-    callback_payload: dict = {"telemetry_interval": 10},
+    callback_method: str = "start_fan", callback_payload: dict = {},
 ):
+    """Simulate a cloud-to-device message to an IoT device to run a method.
+
+    Args:
+        callback_method (str, optional): Function that will be called on the IoT Device. Defaults to `start_fan`.
+        callback_payload (dict, optional): additional data that can be processed by the IoT Device. Defaults to `{}`.
+    """
     try:
         # Create IoTHubRegistryManager
         registry_manager = IoTHubRegistryManager(CONNECTION_STRING)
@@ -51,10 +49,6 @@ def iothub_devicemethod_sample_run(
 
         input("Press Enter to continue...\n")
 
-    # except Exception as ex:
-    #     print("")
-    #     print("Unexpected error {0}".format(ex))
-    #     return
     except KeyboardInterrupt:
         print("")
         print("IoTHubDeviceMethod sample stopped")
