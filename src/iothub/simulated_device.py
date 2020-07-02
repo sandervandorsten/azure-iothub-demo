@@ -50,7 +50,7 @@ def device_method_listener(device_client):
             )
             if method_request.name == "start_fan":
                 response_status, response_payload = start_fan()
-            if method_request.name == "set_telemetry_interval":
+            elif method_request.name == "set_telemetry_interval":
                 response_status, response_payload = set_telemetry_interval(
                     **method_request.payload
                 )
