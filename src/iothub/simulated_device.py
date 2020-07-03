@@ -18,7 +18,7 @@ from azure.iot.device import IoTHubDeviceClient, Message, MethodResponse
 # Using the Azure CLI:
 # az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyNodeDevice --output table
 dotenv.load_dotenv(override=True)
-CONNECTION_STRING = os.getenv("CONNECTION_STRING_SIMULATED_DEVICE")
+CONNECTION_STRING = os.getenv("CONNECTION_STRING_IOT_DEVICE")
 TELEMETRY_INTERVAL = 3
 
 # Define the JSON message to send to IoT Hub.
@@ -45,9 +45,7 @@ def device_method_listener(device_client):
 
         try:
             method_request = device_client.receive_method_request()
-            print(
-                f"\nMethod callback called with:\nmethodName = {method_request.name}\npayload = {method_request.payload}"
-            )
+            print(f"\nMethod callback called with:\nmethodName = {method_request.name}\npayload = {method_request.payload}")
             if method_request.name == "start_fan":
                 response_status, response_payload = start_fan()
             elif method_request.name == "set_telemetry_interval":
