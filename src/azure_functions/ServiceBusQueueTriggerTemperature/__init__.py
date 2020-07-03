@@ -1,3 +1,5 @@
+"""Azure function that will send a cloud-to-device message via IoTHub to a device"""
+
 import json
 import logging
 import os
@@ -8,21 +10,31 @@ from azure.iot.hub.models import CloudToDeviceMethod, CloudToDeviceMethodResult
 
 
 def main(msg: func.ServiceBusMessage):
+    """When a message arrives on the servicebus, send a trigger to IoT Hub to start the fan for that device.
 
-    msg_json = json.loads(msg.get_body().decode("utf-8"))
+    Args:
+        msg (func.ServiceBusMessage): Message from the connected Queue in a Azure ServiceBus
+    """
 
-    logging.info(f"Python ServiceBus queue trigger processed message: {msg_json}")
-    device_id = msg_json["IoTHub"]["ConnectionDeviceId"]
+    # Extract the method into a dictionary
+    msg_dict = json.loads(msg.get_body().decode("utf-8"))
 
+    logging.info(f"Python ServiceBus queue trigger processed message: {msg_dict}")
+
+    # Enable a connectino with the IoT Hub. The connectionstring for the IoT Hub
+    # is preloaded in the Azure Functions configurations.
     connectino_string_iothub = os.getenv("connectionStringIotHub")
     registry_manager = IoTHubRegistryManager(connectino_string_iothub)
 
+    # Settings for the method that the IoT Device should run upon receiving the message.
     callback_method = "start_fan"
     callback_payload = {}
-    # Call the direct method.
     device_method = CloudToDeviceMethod(
         method_name=callback_method, payload=callback_payload
     )
+
+    # Sending the actual cloud-to-device message and invoke a function on the IoT device.
+    device_id = msg_dict["IoTHub"]["ConnectionDeviceId"]
     response = registry_manager.invoke_device_method(device_id, device_method)
 
     print("")
