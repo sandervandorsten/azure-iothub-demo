@@ -1,4 +1,4 @@
-"""Simulate a cloud-to-device message to a Azure Iothub device."""
+"""Simulate a cloud-to-device message to an Azure Iothub device."""
 
 # Using the Python Device SDK for IoT Hub:
 #   https://github.com/Azure/azure-iot-sdk-python
@@ -10,12 +10,10 @@ import fire
 from azure.iot.hub import IoTHubRegistryManager
 from azure.iot.hub.models import CloudToDeviceMethod, CloudToDeviceMethodResult
 
-from builtins import input
-
 # The service connection string to authenticate with your IoT hub.
-# Using the Azure CLI:
+# You can specify them in an .env file, and obtain them using the Azure CLI:
 # az iot hub show-connection-string --hub-name {your iot hub name} --policy-name service
-dotenv.load_dotenv()
+dotenv.load_dotenv(override=True)
 CONNECTION_STRING = os.getenv("CONNECTION_STRING_IOT_HUB")
 DEVICE_ID = os.getenv("DEVICE_ID")
 
@@ -55,7 +53,7 @@ def iothub_devicemethod_sample_run(
 
 
 if __name__ == "__main__":
-    print("IoT Hub Python quickstart #2...")
+    print("Demoing cloud-to-device messaging through IoT Hub...")
     print("    Connection string = {0}".format(CONNECTION_STRING))
     print("    Device ID         = {0}".format(DEVICE_ID))
 
