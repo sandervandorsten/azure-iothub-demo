@@ -29,6 +29,11 @@
   <p align="center">
     IoT application on Azure to connect a <b>RaspberryPi</b> to <b>IoT Hub</b>. <br>Sends device-to-cloud telemetry and allows cloud-to-device callbacks to be sent to the Raspberry Pi.
     <br />
+    <br>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsandervandorsten%2Fazure-iothub-demo%2Fmaster%2Finfra%2Fdeployment.json" target="_blank">
+        <img src="https://aka.ms/deploytoazurebutton"/>
+    </a>
+    <br>
     <br />
     <a href="https://github.com/sandervandorsten/azure-iothub-demo/issues">Report Bug</a>
     ·
@@ -47,7 +52,11 @@
   * [Control Flow](#control-flow)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
-  * [Installation](#installation)
+  * [Deploying Infrastructure](#deploying-infrastructure)
+  * [Starting Services](#starting-services)
+    * [Registering Device on IoT Hub](#registering-device-on-iot-hub)
+    * [Starting Data Analysis job on Stream Analytics](#starting-data-analysis-job-on-stream-analytics)
+    * [Deploying function to Azure Functions](#deploying-function-to-azure-functions)
 * [Usage](#usage)
 * [License](#license)
 * [Contact](#contact)
@@ -112,30 +121,25 @@ I ended up using the following azure Infrastructure in Azure:
 
 To install the required cloud components simply press the button below to deploy to azure.  
 
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsandervandorsten%2Fazure-iothub-demo%2Fmaster%2Finfra%2Fdeployment.json)
-
-
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-```sh
-npm install npm@latest -g
-```
+TBA
 
-### Installation
- 
-1. Clone the repo
-```sh
-git clone https://github.com/sandervandorsten/azure-iothub-demo.git
-```
-2. Install NPM packages
-```sh
-npm install
-```
+### Deploying Infrastructure
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsandervandorsten%2Fazure-iothub-demo%2Fmaster%2Finfra%2Fdeployment.json)
 
+### Starting Services
 
+TBA
+
+#### Registering Device on IoT Hub]
+TBA
+
+#### Starting Data Analysis job on Stream Analytics
+TBA
+
+#### Deploying function to Azure Functions
+TBA
 
 <!-- USAGE EXAMPLES -->
 ## Usage
