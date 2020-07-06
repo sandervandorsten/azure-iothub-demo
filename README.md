@@ -59,16 +59,19 @@ serves as purpose for demoing cloud connectivity.
 ### Background
 <img src="images/thermometer.svg" alt="Getting Hot it Here" width="100" height="100" align="right">I started this project whilst working from home on different coding projects on Azure in the summer during the COVID-19 outbreak. Whilst working from home certainly has it's advantages, I did miss the AC that we have at the office at times. 
 
-<br><br>
+<br>
 
 <img src="images/fan.svg" alt="Attaching a fan" width="100" height="100" align="left">
 Whilst the temperature in my home-office sky-rocketed in June, I bought a ventilator to keep me cool. This was great, however having it turned on at all times is a bit of an overkill as it is certainly not hot all day-everyday here in the Netherlands. My ventilator however did not support temperature-based-control, hence I wanted to build this myself.
 
+<br>
+
+<img src="images/rpi.svg" alt="Raspberry Pi" width="100" height="100" align="right">
 I had a Raspberry Pi lying around so wanted to use this as an interface for measuring temperature and controlling the ventilator. As I was working on a number of projects in Azure, I wondered if I could use their cloud services to connect this raspberry Pi to the cloud. Hence I asked myself:
 
-<h2 align="center">
-    Can I connect a Raspberry Pi to IoT Hub to 1) to send device-to-cloud telemetry data and 2) trigger the ventilator on my desk with a cloud-to-device message?
-</h2>
+<p align="center" style="font-size: 20px ; padding 0px 50px">
+    <b>Can I connect a Raspberry Pi to IoT Hub to 1) to send device-to-cloud telemetry data and 2) trigger the ventilator on my desk with a cloud-to-device message?</b>
+<p>
 
 In my mind, the application should consider of a few components:
 - Raspberry Pi: 
