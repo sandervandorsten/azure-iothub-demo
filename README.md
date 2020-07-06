@@ -103,7 +103,7 @@ I ended up using the following azure Infrastructure in Azure:
 - **Service Bus Queue**. Queue used as input/trigger for Azure Functions. 
 - **Functions**. Serverless function that is triggered by the aforementioned Service Bus Queue, and sends a message via IoT Hub to the Connected Raspberry Pi device. 
 
-[![Azure IoT Hub Demo][image-overview]]
+![Azure IoT Hub Demo][image-overview]()
 
 
 ### Control Flow
@@ -132,7 +132,7 @@ TBA
 
 TBA
 
-#### Registering Device on IoT Hub]
+#### Registering Device on IoT Hub
 TBA
 
 #### Starting Data Analysis job on Stream Analytics

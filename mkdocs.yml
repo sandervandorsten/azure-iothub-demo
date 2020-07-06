@@ -1,0 +1,46 @@
+# Project information
+site_name: Azure IoT Hub demo
+site_description: IoT application on Azure to connect a RaspberryPi to IoT Hub. 
+site_author: Sander van Dorsten
+site_url: https://sandervandorsten.github.io/azure-iothub-demo/
+
+
+# Repository
+repo_name: sandervandorsten/azure-iothub-demo
+repo_url: https://github.com/sandervandorsten/azure-iothub-demo
+
+# Copyright
+copyright: Copyright &copy; 2020 Sander van Dorsten
+
+# Configuration
+theme:
+    name: material
+    language: en
+    palette:
+      scheme: preference
+      primary: green
+      accent: orange
+    font:
+      text: Roboto
+      code: Roboto Mono
+    features:
+      - instant
+      - tabs
+
+    
+
+      # Extras
+extra:
+    social:
+      - icon: fontawesome/brands/github-alt
+        link: https://github.com/sandervandorsten
+      - icon: fontawesome/brands/linkedin
+        link: https://linkedin.com/in/sandervandorsten
+
+# Extensions
+markdown_extensions:
+    - admonition
+    - codehilite:
+        guess_lang: false
+    - toc:
+        permalink: true
