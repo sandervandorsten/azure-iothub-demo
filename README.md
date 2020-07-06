@@ -54,25 +54,52 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<img src="images/thermometer.svg" alt="Getting Hot it Here" width="150" height="150" align="right">I started this project whilst working from home on different coding projects on Azure in the summer during the COVID-19 outbreak. Whilst working from home certainly has it's advantages, I did miss the AC that we have at the office at times. 
+serves as purpose for demoing cloud connectivity.
 
-<img src="images/fan.svg" alt="Attaching a fan" width="150" height="150" align="left">
-Whilst the temperature in my home-office sky-rocketed in June, I bought a ventilator to keep me cool. This was great, however having it turned on at all times is a bit of an overkill as it is certainly not hot all day everyday here in the Netherlands. My ventilator however did not support temperature-based-control, hence I wanted to build this myself. ![Ventilator](images/fan.svg)
+### Background
+<img src="images/thermometer.svg" alt="Getting Hot it Here" width="100" height="100" align="right">I started this project whilst working from home on different coding projects on Azure in the summer during the COVID-19 outbreak. Whilst working from home certainly has it's advantages, I did miss the AC that we have at the office at times. 
 
-<p align="center">
-    <b>Can I </b>
-</p>
+<br><br>
 
+<img src="images/fan.svg" alt="Attaching a fan" width="100" height="100" align="left">
+Whilst the temperature in my home-office sky-rocketed in June, I bought a ventilator to keep me cool. This was great, however having it turned on at all times is a bit of an overkill as it is certainly not hot all day-everyday here in the Netherlands. My ventilator however did not support temperature-based-control, hence I wanted to build this myself.
+
+I had a Raspberry Pi lying around so wanted to use this as an interface for measuring temperature and controlling the ventilator. As I was working on a number of projects in Azure, I wondered if I could use their cloud services to connect this raspberry Pi to the cloud. Hence I asked myself:
+
+<h2 align="center">
+    Can I connect a Raspberry Pi to IoT Hub to 1) to send device-to-cloud telemetry data and 2) trigger the ventilator on my desk with a cloud-to-device message?
+</h2>
+
+In my mind, the application should consider of a few components:
+- Raspberry Pi: 
+    - stream temperature data from device to the cloud. 
+    - listen to signal that triggers fan activation from the cloud. 
+- 'Arbitrary cloud Services':
+    - data should be stored somewhere
+    - Once a certain temperature threshold has been exceded, a message should be returned to the Raspberry Pi to trigger the fan.
+
+I ended up using the following azure Infrastructure in Azure:
 
 [![Azure IoT Hub Demo][image-overview]](image-overview)
 
 
 ### Built With
 
-* []()
-* []()
-* []()
+- **Raspberry Pi** to connect sensor and fan to. This project also includes a simulated Raspberry Pi device that you can run on your computer. 
+- **Azure IoT Hub**. Allows you to securely connect IoT devices to Azure cloud, from which you can further route messages to different services.
+- **Stream Analytics**. Performs streaming data analysis on your IoT input data and forwards the data to specified services. 
+- **Blob Storage**. Stores the Data for later inspection.
+- **Service Bus Queue**. Queue used as input/trigger for Azure Functions. 
+- **Functions**. Serverless function that is triggered by the aforementioned Service Bus Queue, and sends a message via IoT Hub to the Connected Raspberry Pi device. 
 
+### Control Flow
+
+1. A Raspberry Pi collects data from a connected temperature sensor. It streams this data to an IoT Hub. 
+2. The IoTHub processess incoming and outgoing requests from/to connected IoT Devices. It has a `Messaging` Endpoint, from which Stream Analytics ingests the data for further processing.
+3. Stream analytics writes all telemetry temperature data to a blob storage, and writes a subset of the temperatures to a Queue on the Service Bus. In this example, we send only the telemetry data `temperature > 29` to the Queue. 
+4. When a new message is stored on the Queue, a function is triggered. 
+5. The function app sends a message to the IoT hub that the fan of the connected Raspberry Pi should turn on. effectively in our example this means that the fan will turn on for a while if, and only if `temperature > 29`. 
+6. The IoT Hub securely forwards the message to the Raspberry Pi as to start the connected ventilator.  
 
 
 <!-- GETTING STARTED -->
