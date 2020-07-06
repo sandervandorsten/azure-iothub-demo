@@ -50,12 +50,6 @@
                 "description": "Name of the Service Bus namespace"
             }
         },
-        "serviceBusQueueName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of the Queue"
-            }
-        },
         "streamAnalyticsJobName": {
             "type": "string",
             "minLength": 3,
@@ -106,7 +100,9 @@
         "serviceBusListenid": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), 'listen')]",
         "authRuleResourceId": "[resourceId('Microsoft.ServiceBus/namespaces/authorizationRules', parameters('serviceBusNamespaceName'), variables('defaultSASKeyName'))]",
         "serviceBusVersion": "2017-04-01",
-        "iotHubApiVersion": "2018-04-01"
+        "iotHubApiVersion": "2018-04-01",
+        "serviceBusQueueName": "temperature"
+
     },
     "functions": [],
     "resources": [
@@ -195,7 +191,7 @@
             "resources": [
                 {
                     "apiVersion": "[variables('serviceBusVersion')]",
-                    "name": "[parameters('serviceBusQueueName')]",
+                    "name": "[variables('serviceBusQueueName')]",
                     "type": "Queues",
                     "dependsOn": [
                         "[concat('Microsoft.ServiceBus/namespaces/', parameters('serviceBusNamespaceName'))]"
@@ -305,7 +301,7 @@
                         "datasource": {
                             "type": "Microsoft.ServiceBus/Queue",
                             "properties": {
-                                "queueName": "[parameters('serviceBusQueueName')]",
+                                "queueName": "[variables('serviceBusQueueName')]",
                                 "propertyColumns": [],
                                 "serviceBusNamespace": "[parameters('serviceBusNamespaceName')]",
                                 "sharedAccessPolicyName": "send",
