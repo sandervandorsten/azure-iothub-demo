@@ -20,23 +20,19 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo">
+  <a href="https://github.com/sandervandorsten/azure-iothub-demo">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">YOUR_TITLE</h3>
+  <h3 align="center">Azure IoT Hub Demo</h3>
 
   <p align="center">
-    YOUR_SHORT_DESCRIPTION
-    <br />
-    <a href="https://github.com/github_username/repo"><strong>Explore the docs »</strong></a>
+    IoT application on Azure to connect a <b>RaspberryPi</b> to <b>IoT Hub</b>. Sends device-to-cloud telemetry and allows cloud-to-device callbacks to be sent to the Raspberry Pi.
     <br />
     <br />
-    <a href="https://github.com/github_username/repo">View Demo</a>
+    <a href="https://github.com/sandervandorsten/azure-iothub-demo/issues">Report Bug</a>
     ·
-    <a href="https://github.com/github_username/repo/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo/issues">Request Feature</a>
+    <a href="https://github.com/sandervandorsten/azure-iothub-demo/issues">Request Feature</a>
   </p>
 </p>
 
@@ -58,12 +54,16 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+I started this project whilst working from home on different coding projects on Azure in the summer during the COVID-19 outbreak. Whilst working from home certainly has it's advantages, I did miss the AC that we have at the office at times. ![Getting Hot In here](images/thermometer.svg)
+
+Whilst the temperature in my home-office sky-rocketed in June, I bought a ventilator to keep me cool. This was great, however having it turned on at all times is a bit of an overkill as it is certainly not hot all day everyday here in the Netherlands. My ventilator however did not support temperature-based-control, hence I wanted to build this myself. ![Ventilator](images/fan.svg)
+
+<p align="center">
+    <b>Can I </b>
+</p>
+
 
 [![Azure IoT Hub Demo][image-overview]](image-overview)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`github_username`, `repo`, `twitter_handle`, `email`
 
 
 ### Built With
@@ -91,7 +91,7 @@ npm install npm@latest -g
  
 1. Clone the repo
 ```sh
-git clone https://github.com/github_username/repo.git
+git clone https://github.com/sandervandorsten/azure-iothub-demo.git
 ```
 2. Install NPM packages
 ```sh
@@ -112,13 +112,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 <!-- ## Roadmap
 
-See the [open issues](https://github.com/github_username/repo/issues) for a list of proposed features (and known issues). -->
+See the [open issues](https://github.com/sandervandorsten/azure-iothub-demo/issues) for a list of proposed features (and known issues). -->
 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
 
 
 <!-- CONTACT -->
@@ -129,10 +124,9 @@ Sander van Dorsten - [Github](https://github.com/sandervandorsten) - sandervando
 Project Link: [https://github.com/sandervandorsten/azure-iothub-demo](https://github.com/sandervandorsten/azure-iothub-demo)
 
 
+## Related resources
 
-## Resources used for project development
-
-* Infrastructure: [Introduction to building IoT Solutions with Microsoft Azure (YouTube)](https://www.youtube.com/watch?v=Pxj9fYgcwV0)
+* [Introduction to building IoT Solutions with Microsoft Azure (YouTube)](https://www.youtube.com/watch?v=Pxj9fYgcwV0)
 * [**Azure For Everyone** Tutorials by Adam Marczak (YouTube)](https://www.youtube.com/channel/UCdmEIMC3LBil4o0tjaTbj0w)
 
 
