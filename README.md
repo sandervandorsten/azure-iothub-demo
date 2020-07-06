@@ -54,7 +54,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-I started this project whilst working from home on different coding projects on Azure in the summer during the COVID-19 outbreak. Whilst working from home certainly has it's advantages, I did miss the AC that we have at the office at times. ![Getting Hot In here](images/thermometer.svg)
+I started this project whilst working from home on different coding projects on Azure in the summer during the COVID-19 outbreak. Whilst working from home certainly has it's advantages, I did miss the AC that we have at the office at times. <img src="images/thermometer.svg" alt="Getting Hot it Here" width="200" height="200" align="right">
+
 
 Whilst the temperature in my home-office sky-rocketed in June, I bought a ventilator to keep me cool. This was great, however having it turned on at all times is a bit of an overkill as it is certainly not hot all day everyday here in the Netherlands. My ventilator however did not support temperature-based-control, hence I wanted to build this myself. ![Ventilator](images/fan.svg)
 
