@@ -21,13 +21,13 @@
 <br />
 <p align="center">
   <a href="https://github.com/sandervandorsten/azure-iothub-demo">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/rpi.svg" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Azure IoT Hub Demo</h3>
 
   <p align="center">
-    IoT application on Azure to connect a <b>RaspberryPi</b> to <b>IoT Hub</b>. Sends device-to-cloud telemetry and allows cloud-to-device callbacks to be sent to the Raspberry Pi.
+    IoT application on Azure to connect a <b>RaspberryPi</b> to <b>IoT Hub</b>. <br>Sends device-to-cloud telemetry and allows cloud-to-device callbacks to be sent to the Raspberry Pi.
     <br />
     <br />
     <a href="https://github.com/sandervandorsten/azure-iothub-demo/issues">Report Bug</a>
@@ -42,7 +42,9 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-  * [Built With](#built-with)
+  * [Background](#background)
+  * [Infrastructure](#infrastructure)
+  * [Control Flow](#control-flow)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
@@ -69,11 +71,13 @@ Whilst the temperature in my home-office sky-rocketed in June, I bought a ventil
 <img src="images/rpi.svg" alt="Raspberry Pi" width="100" height="100" align="right">
 I had a Raspberry Pi lying around so wanted to use this as an interface for measuring temperature and controlling the ventilator. As I was working on a number of projects in Azure, I wondered if I could use their cloud services to connect this raspberry Pi to the cloud. Hence I asked myself:
 
-<p align="center" style="font-size: 20px ; padding 0px 50px">
+<br>
+
+<p align="center" style="font-size: 25px ; padding 0px 50px">
     <b>Can I connect a Raspberry Pi to IoT Hub to 1) to send device-to-cloud telemetry data and 2) trigger the ventilator on my desk with a cloud-to-device message?</b>
 <p>
 
-In my mind, the application should consider of a few components:
+In my mind, the application should contain a few components:
 - Raspberry Pi: 
     - stream temperature data from device to the cloud. 
     - listen to signal that triggers fan activation from the cloud. 
@@ -81,19 +85,17 @@ In my mind, the application should consider of a few components:
     - data should be stored somewhere
     - Once a certain temperature threshold has been exceded, a message should be returned to the Raspberry Pi to trigger the fan.
 
+### Infrastructure
 I ended up using the following azure Infrastructure in Azure:
-
-[![Azure IoT Hub Demo][image-overview]](image-overview)
-
-
-### Built With
-
 - **Raspberry Pi** to connect sensor and fan to. This project also includes a simulated Raspberry Pi device that you can run on your computer. 
 - **Azure IoT Hub**. Allows you to securely connect IoT devices to Azure cloud, from which you can further route messages to different services.
 - **Stream Analytics**. Performs streaming data analysis on your IoT input data and forwards the data to specified services. 
 - **Blob Storage**. Stores the Data for later inspection.
 - **Service Bus Queue**. Queue used as input/trigger for Azure Functions. 
 - **Functions**. Serverless function that is triggered by the aforementioned Service Bus Queue, and sends a message via IoT Hub to the Connected Raspberry Pi device. 
+
+[![Azure IoT Hub Demo][image-overview]]
+
 
 ### Control Flow
 
@@ -102,13 +104,17 @@ I ended up using the following azure Infrastructure in Azure:
 3. Stream analytics writes all telemetry temperature data to a blob storage, and writes a subset of the temperatures to a Queue on the Service Bus. In this example, we send only the telemetry data `temperature > 29` to the Queue. 
 4. When a new message is stored on the Queue, a function is triggered. 
 5. The function app sends a message to the IoT hub that the fan of the connected Raspberry Pi should turn on. effectively in our example this means that the fan will turn on for a while if, and only if `temperature > 29`. 
-6. The IoT Hub securely forwards the message to the Raspberry Pi as to start the connected ventilator.  
+6. The IoT Hub securely forwards the message to the Raspberry Pi to start the connected ventilator.  
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple steps.
+To install the required cloud components simply press the button below to deploy to azure.  
+
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsandervandorsten%2Fazure-iothub-demo%2Fmaster%2Finfra%2Fdeployment.json)
+
 
 ### Prerequisites
 
