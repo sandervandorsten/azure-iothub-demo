@@ -44,6 +44,8 @@
 
 Do you want to have a fresh breeze in you home office, but are you to lazy to turn on the fan yourself? With this project you'll have your office cooled down in notime!
 
+![Azure IoT Hub Demo][image-overview]
+
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
