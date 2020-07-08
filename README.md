@@ -22,7 +22,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/sandervandorsten/azure-iothub-demo">
-    <img src="images/rpi.svg" alt="Logo" width="80" height="80">
+    <img src="images/rpi.svg" alt="Logo" width="120">
   </a>
 
   <h3 align="center">Azure IoT Hub Demo</h3>
@@ -42,7 +42,7 @@
   </p>
 </p>
 
-
+Do you want to have a fresh breeze in you home office, but are you to lazy to turn on the fan yourself? With this project you'll have your office cooled down in notime!
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -55,9 +55,9 @@
   * [Prerequisites](#prerequisites)
   * [Deploying Infrastructure](#deploying-infrastructure)
   * [Starting Services](#starting-services)
-    * [Registering Device on IoT Hub](#registering-device-on-iot-hub)
-    * [Starting Data Analysis job on Stream Analytics](#starting-data-analysis-job-on-stream-analytics)
-    * [Deploying function to Azure Functions](#deploying-function-to-azure-functions)
+    * [Registering a device on IoT Hub](#registering-a-device-on-iot-hub)
+    * [Starting the analysis job on Stream Analytics](starting-the-analysis-job-on-stream-analytics)
+    * [Deploying a function to Azure Functions](#deploying-a-function-to-azure-functions)
 * [Usage](#usage)
 * [License](#license)
 * [Contact](#contact)
@@ -100,17 +100,17 @@ In my mind, the application should contain a few components:
 - Raspberry Pi: 
     - stream temperature data from device to the cloud. 
     - listen to signal that triggers fan activation from the cloud. 
-- 'Arbitrary cloud Services':
+- 'arbitrary-cloud-services':
     - data should be stored somewhere
     - Once a certain temperature threshold has been exceded, a message should be returned to the Raspberry Pi to trigger the fan.
 
 
 ### Infrastructure
-I ended up using the following azure Infrastructure in Azure:
-- **Raspberry Pi** to connect sensor and fan to. This project also includes a simulated Raspberry Pi device that you can run on your computer. 
+I ended up using the following Infrastructure:
+- **Raspberry Pi** to connect sensor and fan to. This project also includes a simulated Raspberry Pi device that you can run on your computer to speed up development. 
 - **Azure IoT Hub**. Allows you to securely connect IoT devices to Azure cloud, from which you can further route messages to different services.
 - **Stream Analytics**. Performs streaming data analysis on your IoT input data and forwards the data to specified services. 
-- **Blob Storage**. Stores the Data for later inspection.
+- **Blob Storage**. Cold storage for the data.
 - **Service Bus Queue**. Queue used as input/trigger for Azure Functions. 
 - **Functions**. Serverless function that is triggered by the aforementioned Service Bus Queue, and sends a message via IoT Hub to the Connected Raspberry Pi device. 
 
@@ -119,37 +119,44 @@ I ended up using the following azure Infrastructure in Azure:
 
 ### Control Flow
 
-1. A Raspberry Pi collects data from a connected temperature sensor. It streams this data to an IoT Hub. 
-2. The IoTHub processess incoming and outgoing requests from/to connected IoT Devices. It has a `Messaging` Endpoint, from which Stream Analytics ingests the data for further processing.
-3. Stream analytics writes all telemetry temperature data to a blob storage, and writes a subset of the temperatures to a Queue on the Service Bus. In this example, we send only the telemetry data `temperature > 29` to the Queue. 
-4. When a new message is stored on the Queue, a function is triggered. 
-5. The function app sends a message to the IoT hub that the fan of the connected Raspberry Pi should turn on. effectively in our example this means that the fan will turn on for a while if, and only if `temperature > 29`. 
-6. The IoT Hub securely forwards the message to the Raspberry Pi to start the connected ventilator.  
+1. A Raspberry Pi collects data from a connected temperature sensor. It sends this so-called telemetry data to it's designated IoT Hub. 
+2. The IoT Hub processess incoming and outgoing requests from/to connected IoT devices. It has a `Messaging` Endpoint, from which Stream Analytics ingests the Raspberry Pi temperature telemetry for further processing.
+3. Stream Analytics writes all telemetry temperature data to a blob storage, and writes a subset of the temperatures to a Queue on the Service Bus. In this example, we send only the telemetry data `temperature > 29` to the Queue. 
+4. When a new message is stored on the Queue, a Azure Function is triggered. 
+5. The function app sends a message to the IoT hub that the fan of the connected Raspberry Pi should turn on. Effectively in our example this means that the fan will turn on for a while if, and only if `temperature > 29`. 
+6. The IoT Hub securely forwards the message to the Raspberry Pi to start the connected ventilator.
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To install the required cloud components simply press the button below to deploy to azure.  
+In this step-by-step guide we'll help you set up everything to get your own fan up and running. The setup is going to cover the following parts: 
+1. [Deploying your own copy infrastructure to Azure using ARM templates](#deploying-infrastructure)
+2. [Starting and configuring the individual services](#starting-services), specifically:
+  1. [Registering a (simulated) Raspberry Pi device on IoT Hub](#registering-a-device-on-iot-hub)
+  2. [Starting our analysis job on Stream Analytics](#starting-the-analysis-job-on-stream-analytics)
+3. [Deploying a function to Azure Functions](#deploying-a-function-to-azure-functions)
+4. TBA
 
 ### Prerequisites
 
 TBA
 
 ### Deploying Infrastructure
+To install the required cloud components simply press the button below to deploy to azure.  
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsandervandorsten%2Fazure-iothub-demo%2Fmaster%2Finfra%2Fdeployment.json)
 
 ### Starting Services
 
 TBA
 
-#### Registering Device on IoT Hub
+#### Registering a device on IoT Hub
 TBA
 
-#### Starting Data Analysis job on Stream Analytics
+#### Starting the analysis job on Stream Analytics
 TBA
 
-#### Deploying function to Azure Functions
+#### Deploying a function to Azure Functions
 TBA
 
 <!-- USAGE EXAMPLES -->
