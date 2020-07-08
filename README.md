@@ -11,6 +11,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url] -->
 [![Issues][issues-shield]][issues-url]
+[![Updates][pyup-shield]][pyup-url]
 [![MIT License][license-shield]][license-url]
 [![Code Style][code-style-shield]][code-style-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
@@ -65,7 +66,15 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-serves as purpose for demoing cloud connectivity.
+This project helps you setup a relatively simple Azure Infrastructure for connecting your own Raspberry Pi to the cloud. You can use this as a starting point to develop small IoT applications. It contains:
+- The possibility to simulate a Raspberry Pi from your computer to speed up development
+- Simple data storage in a container for 'cold' analysis
+- data flowing through Stream Analytics to perform live analysis and send this along to other Azure Services
+- Infrastructure as code using ARM templates so you can deploy your own easily
+  - Estimated costs: **< 10EUR / Month** (if you set IoT Hub to use a free account, limited to 1 per subscription)
+- An easily extendable infrastructure, for example if:
+  - You want to create a dashboard with PowerBI, you can [add PowerBI as an output to Stream Analytics](https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-power-bi-dashboard). 
+  - You want to [register more IoT devices to IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-get-started-physical) 
 
 ### Background
 <img src="images/thermometer.svg" alt="Getting Hot it Here" width="100" height="100" align="right">I started this project whilst working from home on different coding projects on Azure in the summer during the COVID-19 outbreak. Whilst working from home certainly has it's advantages, I did miss the AC that we have at the office at times. 
@@ -81,9 +90,10 @@ Whilst the temperature in my home-office sky-rocketed in June, I bought a ventil
 I had a Raspberry Pi lying around so wanted to use this as an interface for measuring temperature and controlling the ventilator. As I was working on a number of projects in Azure, I wondered if I could use their cloud services to connect this raspberry Pi to the cloud. Hence I asked myself:
 
 <br>
+<br>
 
-<p align="center" style="font-size: 25px ; padding 0px 50px">
-    <b>Can I connect a Raspberry Pi to IoT Hub to 1) to send device-to-cloud telemetry data and 2) trigger the ventilator on my desk with a cloud-to-device message?</b>
+<p align="center" style="font-size: 30px ; padding 0px 50px">
+    <b>Can I connect a Raspberry Pi to IoT Hub to  <br> 1) send device-to-cloud telemetry data and <br> 2) trigger the ventilator on my desk with a cloud-to-device message?</b>
 <p>
 
 In my mind, the application should contain a few components:
@@ -94,6 +104,7 @@ In my mind, the application should contain a few components:
     - data should be stored somewhere
     - Once a certain temperature threshold has been exceded, a message should be returned to the Raspberry Pi to trigger the fan.
 
+
 ### Infrastructure
 I ended up using the following azure Infrastructure in Azure:
 - **Raspberry Pi** to connect sensor and fan to. This project also includes a simulated Raspberry Pi device that you can run on your computer. 
@@ -103,7 +114,7 @@ I ended up using the following azure Infrastructure in Azure:
 - **Service Bus Queue**. Queue used as input/trigger for Azure Functions. 
 - **Functions**. Serverless function that is triggered by the aforementioned Service Bus Queue, and sends a message via IoT Hub to the Connected Raspberry Pi device. 
 
-![Azure IoT Hub Demo][image-overview]()
+[![Azure IoT Hub Demo][image-overview]](#)
 
 
 ### Control Flow
@@ -192,3 +203,7 @@ Project Link: [https://github.com/sandervandorsten/azure-iothub-demo](https://gi
 [image-functions]: images/functions.png
 [code-style-shield]: https://img.shields.io/badge/code%20style-black-000000.svg
 [code-style-url]: https://github.com/psf/black
+[pyup-shield]: https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/shield.svg
+[pyup-url]: https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/
+
+
