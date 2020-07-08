@@ -114,7 +114,7 @@ I ended up using the following Infrastructure:
 - **Service Bus Queue**. Queue used as input/trigger for Azure Functions. 
 - **Functions**. Serverless function that is triggered by the aforementioned Service Bus Queue, and sends a message via IoT Hub to the Connected Raspberry Pi device. 
 
-[![Azure IoT Hub Demo][image-overview]](#)
+![Azure IoT Hub Demo][image-overview]
 
 
 ### Control Flow
@@ -130,21 +130,34 @@ I ended up using the following Infrastructure:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-In this step-by-step guide we'll help you set up everything to get your own fan up and running. The setup is going to cover the following parts: 
-1. [Deploying your own copy infrastructure to Azure using ARM templates](#deploying-infrastructure)
-2. [Starting and configuring the individual services](#starting-services), specifically:
-  1. [Registering a (simulated) Raspberry Pi device on IoT Hub](#registering-a-device-on-iot-hub)
-  2. [Starting our analysis job on Stream Analytics](#starting-the-analysis-job-on-stream-analytics)
-3. [Deploying a function to Azure Functions](#deploying-a-function-to-azure-functions)
-4. TBA
+In this step-by-step guide we'll help you set up everything to get your own application up and running. The setup is going to cover the following parts: 
+ 1. [Deploying your own copy infrastructure to Azure using ARM templates](#deploying-infrastructure)
+ 2. [Starting and configuring the individual services](#starting-services), specifically:
+    1. [Registering a (simulated) Raspberry Pi device on IoT Hub](#registering-a-device-on-iot-hub)
+    2. [Starting our analysis job on Stream Analytics](#starting-the-analysis-job-on-stream-analytics)
+    3. [Deploying a function to Azure Functions](#deploying-a-function-to-azure-functions)
+ 3. TBA
 
 ### Prerequisites
 
-TBA
+- Azure account with a subscription you are allowed to create resources in (Free Trial Subscription should do)
+- ...
 
 ### Deploying Infrastructure
-To install the required cloud components simply press the button below to deploy to azure.  
+I've [defined the infrastructure in an ARM template](https://azure.microsoft.com/en-us/resources/templates/). This allows you to press the button below and deploy the infrastructure to your own Azure account with the click of a button. 
+
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsandervandorsten%2Fazure-iothub-demo%2Fmaster%2Finfra%2Fdeployment.json)
+
+1. Press the 'Deploy to Azure' button above to create a custom deployment in Azure
+2. Login to your Azure Account where you want to create the application (if not logged in yet)
+3. You should then see the Custom Deployment screen as in the screenshot below. Here you can specify some settings for the Deployment.
+    1. Select a subscription in which you want to create the resources in
+    2. Create a new resourcegroup in which you want to deploy these resources
+    3. Keep all the other settings as default, unless you know what you're doing and want to change something
+    4. Scroll down, accept the terms and conditions and click Purchase.
+    5. **IMPORTANT** Remember that this deployment and the running of it will cost you money. For me, I didn't pay more that a few euros and I let it run for a month or so. Please remember to remove your resources if you're not using them anymore! 
+4. After a couple of minutes (+- 5 minutes I guess) your infrastructure deployment should be completed. Navigate to the resource group you've created to see the different services you've deployed. 
+![Custom Deployment][image-deployment01]]
 
 ### Starting Services
 
@@ -205,12 +218,14 @@ Project Link: [https://github.com/sandervandorsten/azure-iothub-demo](https://gi
 [license-url]: https://github.com/sandervandorsten/azure-iothub-demo/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/sandervandorsten
-[image-overview]: images/azure-iothub-demo.png
-[image-back-end-simulation]: images/back-end-simulation.png
-[image-functions]: images/functions.png
 [code-style-shield]: https://img.shields.io/badge/code%20style-black-000000.svg
 [code-style-url]: https://github.com/psf/black
 [pyup-shield]: https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/shield.svg
 [pyup-url]: https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/
 
 
+[image-overview]: images/azure-iothub-demo.png
+[image-back-end-simulation]: images/back-end-simulation.png
+[image-functions]: images/functions.png
+[image-deployment01]: images/deploying_infrastructure01.png
+[image-deployment02]: images/deploying_infrastructure02.png

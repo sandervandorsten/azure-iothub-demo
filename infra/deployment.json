@@ -2,25 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageAccountName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of the Storage Account to use"
-            }
-        },
-        "containerName": {
-            "type": "string",
-            "metadata": {
-                "description": "Specifies the name of the blob container."
-            }
-        },
-        "iotHubName": {
-            "type": "string",
-            "minLength": 3,
-            "metadata": {
-                "description": "Specifies the name of the IoT Hub."
-            }
-        },
         "location": {
             "type": "string",
             "defaultValue": "[resourceGroup().location]",
@@ -28,14 +9,42 @@
                 "description": "Location for all resources."
             }
         },
-        "skuName": {
+        "storageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Storage Account that will be used to store the data."
+            },
+            "defaultValue": "[concat('storage', uniqueString(resourceGroup().id))]"
+        },
+        "containerName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the blob container used within the Storage Account to store the data."
+            },
+            "defaultValue": "temperature"
+        },
+        "iotHubName": {
+            "type": "string",
+            "minLength": 3,
+            "metadata": {
+                "description": "Name of the IoT Hub."
+            },
+            "defaultValue": "[concat('rpi-iothub-', uniqueString(resourceGroup().id))]"
+        },
+        "iotHubSKU": {
             "type": "string",
             "defaultValue": "F1",
+            "allowedValues": [
+                "F1",
+                "S1",
+                "S2",
+                "S3"
+            ],
             "metadata": {
-                "description": "Specifies the IotHub SKU."
+                "description": "Specifies the IotHub pricing tier (SKU). Recommended to use Free tier (F1), limited to 1 per account. You can only use the Free and Standard edition for this demo, because the Basic editions do'nt allow cloud-to-device messaging."
             }
         },
-        "capacityUnits": {
+        "iotHubCapacityUnits": {
             "type": "int",
             "minValue": 1,
             "maxValue": 1,
@@ -48,7 +57,8 @@
             "type": "string",
             "metadata": {
                 "description": "Name of the Service Bus namespace"
-            }
+            },
+            "defaultValue": "[concat('rpi-servicebus-', uniqueString(resourceGroup().id))]"
         },
         "streamAnalyticsJobName": {
             "type": "string",
@@ -56,12 +66,14 @@
             "maxLength": 63,
             "metadata": {
                 "description": "Stream Analytics Job Name, can contain alphanumeric characters and hypen and must be 3-63 characters long"
-            }
+            },
+            "defaultValue": "[concat('rpi-streaming-', uniqueString(resourceGroup().id))]"
         },
         "numberOfStreamingUnits": {
             "type": "int",
             "minValue": 1,
             "maxValue": 48,
+            "defaultValue": 1,
             "allowedValues": [
                 1,
                 3,
@@ -75,20 +87,21 @@
                 48
             ],
             "metadata": {
-                "description": "Number of Streaming Units"
+                "description": "Number of Streaming Units used by Stream analytics. Keep to 1 to keep costs as low as possible"
             }
         },
         "functionAppName": {
             "type": "string",
             "metadata": {
-                "description": "The name of you Function App Site."
-            }
+                "description": "The name of you Function App that will host your functions."
+            },
+            "defaultValue": "[concat('functionapp-', uniqueString(resourceGroup().id))]"
         },
         "serverfarmName": {
             "type": "string",
             "defaultValue": "WestEuropeLinuxDynamicPlan",
             "metadata": {
-                "description": "The name of you serverfarm."
+                "description": "The name of you serverfarm used by the function App."
             }
         }
     },
@@ -167,8 +180,8 @@
                 }
             },
             "sku": {
-                "name": "[parameters('skuName')]",
-                "capacity": "[parameters('capacityUnits')]"
+                "name": "[parameters('iotHubSKU')]",
+                "capacity": "[parameters('iotHubCapacityUnits')]"
             }
         },
         {

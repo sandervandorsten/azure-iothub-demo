@@ -11,10 +11,10 @@
         "iotHubName": {
             "value": "svd-rpi-iothub-01"
         },
-        "skuName": {
-            "value": "S1"
+        "iotHubSKU": {
+            "value": "F1"
         },
-        "capacityUnits": {
+        "iotHubCapacityUnits": {
             "value": 1
         },
         "streamAnalyticsJobName": {
@@ -25,9 +25,6 @@
         },
         "serviceBusNamespaceName": {
             "value": "svd-rpi-sb-01"
-        },
-        "serviceBusQueueName": {
-            "value": "temperature"
         },
         "functionAppName": {
             "value": "svd-rpi-functionapp-01"
