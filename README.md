@@ -224,9 +224,7 @@ We will use Stream Analytics to ingest data from IoT Hub and move it to both Blo
 #### Deploying a function to Azure Functions
 <img src="images/azure-functions-logo.png" alt="Azure Functions Logo" height="100px" align="right">
 Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure. A function is "triggered" by a specific type of event. Supported triggers include responding to changes in data, responding to messages, running on a schedule, or as the result of an HTTP request.
-
-<br> 
-
+<br><br>
 In our application, we're going to start a function when we receive a message on our Service Bus Queue. 
 
 
