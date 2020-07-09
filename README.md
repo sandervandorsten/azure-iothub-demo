@@ -189,27 +189,28 @@ We will use Stream Analytics to ingest data from IoT Hub and move it to both Blo
 2. On the bottom right you will see the **Query that is already pre-defined**. This query does 2 things. (it shown below as well for convenience)
     1. it moves all data from the **input called `iothub` to the output called `blobstorage`**
     2. it moves all data where `temperature > 29` from the **input called `iothub` to the output called `servicebus`**
+    ```SQL 
+    SELECT
+        *
+    INTO
+        blobstorage
+    FROM
+        iothub
+
+    SELECT
+        *
+    INTO
+        servicebus
+    FROM
+        iothub
+    WHERE
+        temperature > 29
+    ```
 3. If you want to learn how this input and outputs are actually coupled to the IoT Hub and Service Bus in our infrastructure, you can navigate to the menu blades on the left of your screen called **inputs** and **outputs** (under **Job Topology**). At deployment time, the bindings to these services were already done for you so you don't have to worry about them. If you want to learn how to create these yourself, **I recommend [This video](https://www.youtube.com/watch?v=NbGmyjgY0pU) by Adam Marczak** on Azure Stream Analytics. I fact, I recommend all his Azure tutorials, which helped me a great deal in developing this project.
 4. Now you know roughly what happens in Stream Analytics, we can activate this Stream Analytics Job to start processing incoming requests. Remember that we haven't connected any devices yet, but we're just preconfiguring the infrastrature. Press the **> Start** button **at the top of the Overview** menu to start the job. It takes about a minute or two to activate, you can see the status straight below it. (see screenshot below)
 5. You have sucessfully started your Steam Analytics job! In a bit, our Raspberry Pi Data will flow through this job to the connected services. Now it's not doing anything yet though, So lets quickly finish up our infrastructure setup to start sending data. 
 
-```SQL 
-SELECT
-    *
-INTO
-    blobstorage
-FROM
-    iothub
 
-SELECT
-    *
-INTO
-    servicebus
-FROM
-    iothub
-WHERE
-    temperature > 29
-```
 <p align="center">
   <img src="images/streaming.png" alt="Stream Analytics" border="2" height="100%">
 </p>
