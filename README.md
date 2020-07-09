@@ -44,7 +44,7 @@
 
 Do you want to have a fresh breeze in you home office, but are you to lazy to turn on the fan yourself? With this project you'll have your office cooled down in notime!
 
-![Azure IoT Hub Demo][image-overview]
+<img src="images/azure-iothub-demo.png" alt="Infrastructure Overview" border="1">
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -116,8 +116,7 @@ I ended up using the following Infrastructure:
 - **Service Bus Queue**. Queue used as input/trigger for Azure Functions. 
 - **Functions**. Serverless function that is triggered by the aforementioned Service Bus Queue, and sends a message via IoT Hub to the Connected Raspberry Pi device. 
 
-![Azure IoT Hub Demo][image-overview]
-
+<img src="images/azure-iothub-demo.png" alt="Infrastructure Overview" border="1">
 
 ### Control Flow
 
@@ -159,14 +158,27 @@ I've [defined the infrastructure in an ARM template](https://azure.microsoft.com
     4. Scroll down, accept the terms and conditions and click Purchase.
     5. **IMPORTANT** Remember that this deployment and the running of it will cost you money. For me, I didn't pay more that a few euros and I let it run for a month or so. Please remember to remove your resources if you're not using them anymore! 
 4. After a couple of minutes (+- 5 minutes I guess) your infrastructure deployment should be completed. Navigate to the resource group you've created to see the different services you've deployed. 
-![Custom Deployment][image-deployment01]]
+
+<img src="images/deploy-infra01.png" alt="Infrastructure Deployment" border="1">
 
 ### Starting Services
+You should now have the individual components deployed within your Resource Group. Navigate to your resource group overview, and you'll see something like this.
 
-TBA
+<img src="images/resourcegroup-overview.png" alt="Resources" border="1">
+
+To use our end-to-end application, we must activate and configure some of our individual services. We're going to do that now.  
 
 #### Registering a device on IoT Hub
-TBA
+The Azure IoT Hub is a managed service, hosted in the cloud, that acts as a central message hub for bi-directional communication between your IoT application and the devices it manages. You can use Azure IoT Hub to build IoT solutions with reliable and secure communications between millions of IoT devices and a cloud-hosted solution backend. You can connect virtually any device to IoT Hub. Today we're going to connect only one device.
+
+To register a device on IoT Hub:
+1. Go to your IoT Hub Resource and select the menu blad IoT Devices (see screenshot below)
+2. Register a New device by clicking **+ New**
+3. In the "Create a Device" tab, write down a Device ID, for example `MyRaspberryPi`. This should be a identifier unique within the IoT Hub.
+4. Leave everything else to it's default values and press **Save**. 
+5. You have succesfully registered a device on IoT Hub! You will come back to this screen later to copy the (Primary) Connection String to your local configuration file to allow your device to connect to IoT Hub. 
+
+<img src="images/iothub-register01.png" alt="Resources" border="1">
 
 #### Starting the analysis job on Stream Analytics
 TBA
