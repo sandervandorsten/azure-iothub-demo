@@ -170,9 +170,11 @@ To use our end-to-end application, we must activate and configure some of our in
 
 #### Registering a device on IoT Hub
 <img src="images/iot-hub-logo.png" alt="IoT Hub Logo" height="100px" align="right">
-The Azure IoT Hub is a managed service, hosted in the cloud, that acts as a central message hub for bi-directional communication between your IoT application and the devices it manages. You can use Azure IoT Hub to build IoT solutions with reliable and secure communications between millions of IoT devices and a cloud-hosted solution backend. You can connect virtually any device to IoT Hub. Today we're going to connect only one device.
+The Azure IoT Hub is a managed service, hosted in the cloud, that acts as a central message hub for bi-directional communication between your IoT application and the devices it manages. You can use Azure IoT Hub to build IoT solutions with reliable and secure communications between millions of IoT devices and a cloud-hosted solution backend. You can connect virtually any device to IoT Hub. 
 
-To register a device on IoT Hub:
+<br>
+
+Today we're going to connect only one device. To register a device on IoT Hub:
 1. Go to your IoT Hub resource and select the menu blade **IoT Devices** (see screenshot below)
 2. Register a New device by clicking **+ New**
 3. In the "Create a Device" tab, **write down a Device ID**, for example `MyRaspberryPi`. This should be a identifier unique within the IoT Hub.
@@ -184,6 +186,8 @@ To register a device on IoT Hub:
 #### Starting the analysis job on Stream Analytics
 <img src="images/stream-analytics-logo.png" alt="Stream Analytics Logo" height="100px" align="right">
 Azure Stream Analytics is a real-time analytics and complex event-processing engine that is designed to analyze and process high volumes of fast streaming data from multiple sources simultaneously. Patterns can be identified from a number of input sources including devices, sensors and applications. These patterns can be used to trigger actions and initiate workflows such as creating alerts, feeding information to a reporting tool, or storing transformed data for later use. 
+
+<br>
 
 We will use Stream Analytics to ingest data from IoT Hub and move it to both Blob Storage and a Service Bus Queue for more complex actions. This is already configured for you when the infrastructure was deployed, the only thing we need to do is **Start the Streaming Job**.
 
@@ -220,6 +224,8 @@ We will use Stream Analytics to ingest data from IoT Hub and move it to both Blo
 #### Deploying a function to Azure Functions
 <img src="images/azure-functions-logo.png" alt="Azure Functions Logo" height="100px" align="right">
 Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure. A function is "triggered" by a specific type of event. Supported triggers include responding to changes in data, responding to messages, running on a schedule, or as the result of an HTTP request.
+
+<br> 
 
 In our application, we're going to start a function when we receive a message on our Service Bus Queue. 
 
