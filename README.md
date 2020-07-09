@@ -169,6 +169,7 @@ You should now have the individual components deployed within your Resource Grou
 To use our end-to-end application, we must activate and configure some of our individual services. We're going to do that now.  
 
 #### Registering a device on IoT Hub
+<img src="images/iot-hub-logo.png" alt="IoT Hub Logo" height="100px" align="right">
 The Azure IoT Hub is a managed service, hosted in the cloud, that acts as a central message hub for bi-directional communication between your IoT application and the devices it manages. You can use Azure IoT Hub to build IoT solutions with reliable and secure communications between millions of IoT devices and a cloud-hosted solution backend. You can connect virtually any device to IoT Hub. Today we're going to connect only one device.
 
 To register a device on IoT Hub:
@@ -181,14 +182,15 @@ To register a device on IoT Hub:
 <img src="images/iothub-register01.png" alt="Resources" border="1">
 
 #### Starting the analysis job on Stream Analytics
+<img src="images/stream-analytics-logo.png" alt="Stream Analytics Logo" height="100px" align="right">
 Azure Stream Analytics is a real-time analytics and complex event-processing engine that is designed to analyze and process high volumes of fast streaming data from multiple sources simultaneously. Patterns can be identified from a number of input sources including devices, sensors and applications. These patterns can be used to trigger actions and initiate workflows such as creating alerts, feeding information to a reporting tool, or storing transformed data for later use. 
 
 We will use Stream Analytics to ingest data from IoT Hub and move it to both Blob Storage and a Service Bus Queue for more complex actions. This is already configured for you when the infrastructure was deployed, the only thing we need to do is **Start the Streaming Job**.
 
 1. **Navigate to your Stream Analytics resource** and you will see the the **Overview page**. 
-2. On the bottom right you will see the **Query that is already pre-defined**. This query does 2 things. (it shown below as well for convenience)
-    1. it moves all data from the **input called `iothub` to the output called `blobstorage`**
-    2. it moves all data where `temperature > 29` from the **input called `iothub` to the output called `servicebus`**
+2. On the bottom right you will see the **Query** that is already pre-defined. This query does 2 things. (it shown below as well for convenience)
+    1. it moves all data from the **input called** `iothub` **to the output called `blobstorage`**
+    2. it moves all data where `temperature > 29` from the **input called** `iothub` **to the output called** `servicebus`
     ```SQL 
     SELECT
         *
@@ -207,7 +209,7 @@ We will use Stream Analytics to ingest data from IoT Hub and move it to both Blo
         temperature > 29
     ```
 3. If you want to learn how this input and outputs are actually coupled to the IoT Hub and Service Bus in our infrastructure, you can navigate to the menu blades on the left of your screen called **inputs** and **outputs** (under **Job Topology**). At deployment time, the bindings to these services were already done for you so you don't have to worry about them. If you want to learn how to create these yourself, **I recommend [This video](https://www.youtube.com/watch?v=NbGmyjgY0pU) by Adam Marczak** on Azure Stream Analytics. I fact, I recommend all his Azure tutorials, which helped me a great deal in developing this project.
-4. Now you know roughly what happens in Stream Analytics, we can activate this Stream Analytics Job to start processing incoming requests. Remember that we haven't connected any devices yet, but we're just preconfiguring the infrastrature. Press the **> Start** button **at the top of the Overview** menu to start the job. It takes about a minute or two to activate, you can see the status straight below it. (see screenshot below)
+4. Now you know roughly what happens in Stream Analytics, we can **start this Stream Analytics Job** to start processing incoming requests. Remember that we're not sending any data from a device yet to our application, but we're just preconfiguring the infrastrature. Press the **> Start** button **at the top of the Overview** menu to start the job. It takes about a minute or two to activate, you can see the status straight below it. (see screenshot below)
 5. You have sucessfully started your Steam Analytics job! In a bit, our Raspberry Pi Data will flow through this job to the connected services. Now it's not doing anything yet though, So lets quickly finish up our infrastructure setup to start sending data. 
 
 
@@ -216,7 +218,11 @@ We will use Stream Analytics to ingest data from IoT Hub and move it to both Blo
 </p>
 
 #### Deploying a function to Azure Functions
-TBA
+<img src="images/azure-functions-logo.png" alt="Azure Functions Logo" height="100px" align="right">
+Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure. A function is "triggered" by a specific type of event. Supported triggers include responding to changes in data, responding to messages, running on a schedule, or as the result of an HTTP request.
+
+In our application, we're going to start a function when we receive a message on our Service Bus Queue. 
+
 
 <!-- USAGE EXAMPLES -->
 ## Usage
