@@ -60,8 +60,11 @@ Do you want to have a fresh breeze in you home office, but are you to lazy to tu
     * [Registering a device on IoT Hub](#registering-a-device-on-iot-hub)
     * [Starting the analysis job on Stream Analytics](starting-the-analysis-job-on-stream-analytics)
     * [Deploying a function to Azure Functions](#deploying-a-function-to-azure-functions)
+      * 1/4: Downloading the repository
+      * 2/4: Running our functions application locally
+      * 3/4: Simulating a RaspberryPi Locally
+      * 4/4 Deploying your function app to Azure
 * [Usage](#usage)
-* [License](#license)
 * [Contact](#contact)
 * [Resources used for project development](#Resources-used-for-project-development)
 
@@ -137,7 +140,10 @@ In this step-by-step guide we'll help you set up everything to get your own appl
     1. [Registering a (simulated) Raspberry Pi device on IoT Hub](#registering-a-device-on-iot-hub)
     2. [Starting our analysis job on Stream Analytics](#starting-the-analysis-job-on-stream-analytics)
     3. [Deploying a function to Azure Functions](#deploying-a-function-to-azure-functions)
- 3. TBA
+        1. Downloading the repository
+        2. Running our functions application locally
+        3. Simulating a RaspberryPi Locally
+        4. Deploying your function app to Azure
 
 ### Prerequisites
 
@@ -332,17 +338,17 @@ az iot hub device-identity show-connection-string \
 #HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;DeviceId=MyRaspberryPi;SharedAccessKey=bHnH82Pn21X0QPVkrFCban/XTEml5zAVR8YkiccgZPQ=
 ```
 
-- Now, open the `.env` file with a text editor and replace the string values s.t. it looks like this
+- Now, **open the** `.env` **file** with a text editor and replace the string values s.t. it looks like this
   ```bash
   DEVICE_ID="MyRaspberryPi"
   CONNECTION_STRING_IOT_DEVICE="HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;DeviceId=MyRaspberryPi;SharedAccessKey=bHnH82Pn21X0QPVkrFCban/XTEml5zAVR8YkiccgZPQ="
   CONNECTION_STRING_IOT_HUB="HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=BhkccChKy2ii4SdlXw00/1NtD0p6nssS0MIHoWqZODI="
   ```
 - Save the .env file and close it. . **This file contains credentials and should not be shared, or stored publicly!** 
-- Now the configuration is finished, you can start the RaspberryPi simulation. the Simulated Raspberry Pi will:
+- Now the configuration is finished, **you can start the RaspberryPi simulation**. the Simulated Raspberry Pi will:
   - send a random temperature value every 3 seconds to the IoT Hub.
   - listen to it's IoT Hub for messages. Our function app will send messages to the device through the IoT Hub to start the fan if `temperature > 29` (as configured in our Stream Analytics Job). The fan will then be turned on for 10 seconds, and deactivated afterwards. Hence, if the temperature will stay above 29 degrees, the fan will stay on because the RaspberryPi will keep receiving messages to turn on the fan.
-- To start the Raspberry Pi simulation, re-use the second terminal window and execute the following commands: 
+- **To start the Raspberry Pi simulation**, re-use the second terminal window and execute the following commands: 
   ```bash
   # 6. navigate to the iothub folder and run the Raspberry Pi simulation
   cd src/iothub
@@ -354,7 +360,7 @@ az iot hub device-identity show-connection-string \
   # Message sent
   # ...
   ```
-- Once the Raspberry Pi sends a message with a `temperature > 29`, this message will be forwarded by the Stream Analytics Job to the Service Bus Queue. Once this message arrives on the Service Bus Queue, it will trigger the Function app (that is running locally on your computer), which sends a message through the IoTHub to the device that the fan should be activated. The logs in your terminal of your function app should look something like this:
+- Once the Raspberry Pi sends a message with a `temperature > 29`, this message will be forwarded by the Stream Analytics Job to the Service Bus Queue. Once this message arrives on the Service Bus Queue, it will trigger the Function app (that is running locally on your computer), which sends a message through the IoTHub to the device that the fan should be activated. **The logs in your terminal of your function app should look something like this:**
   ```log
   [7/14/2020 9:53:43 AM] Executing 'Functions.ServiceBusQueueTriggerTemperature' (Reason='New ServiceBus message detected on 'temperature'.', Id=161614bf-3d3a-40f7-8608-7e2c88d08ba0)
   [7/14/2020 9:53:43 AM] Trigger Details: MessageId: a5f9ddcd698142e495a1cec97f954071, DeliveryCount: 10, EnqueuedTime: 7/14/2020 9:53:42 AM, LockedUntil: 7/14/2020 9:58:43 AM, SessionId: 18725
@@ -366,24 +372,33 @@ az iot hub device-identity show-connection-string \
   [7/14/2020 9:53:43 AM] Response status          : 200
   [7/14/2020 9:53:43 AM] Response payload         : {'Response': 'The fan has been (re)activated at 2020-07-14 11:53:43.095383'}
   ```
-- 
+- You should now have **two terminal windows open**. One with a locally running function app, and one with a Simulated Raspberry Pi. Messages should be flowing back and forth between the services. If this is not the case:
+  - Check if your `.env` file is configured correctly s.t. your Simulated Raspberry Pi can send data to the cloud.
+  - Make sure your Stream Analytics Job is running (see: [Starting the analysis job on Stream Analytics](starting-the-analysis-job-on-stream-analytics))
+  - Verify if messages are received on the cloud by checking 
+    - if data is written to the storage account container named `temperature`. This should contain one or multiple jsonfiles with data from the Raspberry Pi.
+    - if messages are sent to the Service Bus Queue. You can navigate in the Azure Portal to the Queue and look if there are messages in the Queue. **Remember that if your function app is running locally, it will consume all messages on that queue instantly, hence the queue will become empty almost instantaniously whilst the function app is running.** 
+
+##### 4/4 Deploying your function app to Azure
+Now your function app is tested locally, you can deploy it to Azure. You can stop the services in both terminals, and execute the following command:
+```bash
+# 1. Deploy the function to Azure. (replace the function app name with your own)
+func azure functionapp publish functionapp-pndvv72m6ihab
+```
+This will use the Azure Functions library to deploy your function to the cloud. after a minute or so you can open the Azure Portal, navigate to your function app and find your function deployed and well.
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-
+<p align="center">
+  <img src="images/functionapp.png" alt="Function App" border="2" height="100%" width="100%">
+</p>
 
 <!-- ROADMAP -->
 <!-- ## Roadmap
 
 See the [open issues](https://github.com/sandervandorsten/azure-iothub-demo/issues) for a list of proposed features (and known issues). -->
 
-
+## Usage
+TBA
 
 <!-- CONTACT -->
 ## Contact
