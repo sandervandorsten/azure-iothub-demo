@@ -192,7 +192,7 @@ class SimulatedRaspberryPi(RaspberryPiInterface):
             seconds=self.fan_session_duration
         )
 
-        response_status = 400
+        response_status = 200
         response_payload = {
             "Response": f"The fan has been (re)activated at {fan_start_time}"
         }
