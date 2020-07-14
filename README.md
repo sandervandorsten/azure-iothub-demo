@@ -142,7 +142,9 @@ In this step-by-step guide we'll help you set up everything to get your own appl
 ### Prerequisites
 
 - Azure account with a subscription you are allowed to create resources in (Free Trial Subscription should do)
-- ...
+- Make sure you have [installed the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer
+- basic knowledge of git + python virtual environments
+- access to a bash-like terminal
 
 ### Deploying Infrastructure
 I've [defined the infrastructure in an ARM template](https://azure.microsoft.com/en-us/resources/templates/). This allows you to press the button below and deploy the infrastructure to your own Azure account with the click of a button. 
@@ -172,7 +174,7 @@ To use our end-to-end application, we must activate and configure some of our in
 <img src="images/iot-hub-logo.png" alt="IoT Hub Logo" height="100px" align="right">
 The Azure IoT Hub is a managed service, hosted in the cloud, that acts as a central message hub for bi-directional communication between your IoT application and the devices it manages. You can use Azure IoT Hub to build IoT solutions with reliable and secure communications between millions of IoT devices and a cloud-hosted solution backend. You can connect virtually any device to IoT Hub. 
 
-<br>
+<br><br>
 
 Today we're going to connect only one device. To register a device on IoT Hub:
 1. Go to your IoT Hub resource and select the menu blade **IoT Devices** (see screenshot below)
@@ -187,7 +189,7 @@ Today we're going to connect only one device. To register a device on IoT Hub:
 <img src="images/stream-analytics-logo.png" alt="Stream Analytics Logo" height="100px" align="right">
 Azure Stream Analytics is a real-time analytics and complex event-processing engine that is designed to analyze and process high volumes of fast streaming data from multiple sources simultaneously. Patterns can be identified from a number of input sources including devices, sensors and applications. These patterns can be used to trigger actions and initiate workflows such as creating alerts, feeding information to a reporting tool, or storing transformed data for later use. 
 
-<br>
+<br><br>
 
 We will use Stream Analytics to ingest data from IoT Hub and move it to both Blob Storage and a Service Bus Queue for more complex actions. This is already configured for you when the infrastructure was deployed, the only thing we need to do is **Start the Streaming Job**.
 
@@ -215,6 +217,7 @@ We will use Stream Analytics to ingest data from IoT Hub and move it to both Blo
 3. If you want to learn how this input and outputs are actually coupled to the IoT Hub and Service Bus in our infrastructure, you can navigate to the menu blades on the left of your screen called **inputs** and **outputs** (under **Job Topology**). At deployment time, the bindings to these services were already done for you so you don't have to worry about them. If you want to learn how to create these yourself, **I recommend [This video](https://www.youtube.com/watch?v=NbGmyjgY0pU) by Adam Marczak** on Azure Stream Analytics. I fact, I recommend all his Azure tutorials, which helped me a great deal in developing this project.
 4. Now you know roughly what happens in Stream Analytics, we can **start this Stream Analytics Job** to start processing incoming requests. Remember that we're not sending any data from a device yet to our application, but we're just preconfiguring the infrastrature. Press the **> Start** button **at the top of the Overview** menu to start the job. It takes about a minute or two to activate, you can see the status straight below it. (see screenshot below)
 5. You have sucessfully started your Steam Analytics job! In a bit, our Raspberry Pi Data will flow through this job to the connected services. Now it's not doing anything yet though, So lets quickly finish up our infrastructure setup to start sending data. 
+6. **Cost saving Tip:** Pause your stream Analytics job once your done developing. You don't pay per request, but per hour. 
 
 
 <p align="center">
@@ -224,8 +227,65 @@ We will use Stream Analytics to ingest data from IoT Hub and move it to both Blo
 #### Deploying a function to Azure Functions
 <img src="images/azure-functions-logo.png" alt="Azure Functions Logo" height="100px" align="right">
 Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure. A function is "triggered" by a specific type of event. Supported triggers include responding to changes in data, responding to messages, running on a schedule, or as the result of an HTTP request.
+
 <br><br>
-In our application, we're going to start a function when we receive a message on our Service Bus Queue. 
+
+In our application, we're going to start a function when we receive a message on our Service Bus Queue. A function can be deployed within Azure Functions, and can be developed locally on your computer. We're going to deploy a function that I already prepared for this demo.
+
+Make sure you have [installed the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer. you can test this by running `az --version` in your terminal. 
+
+##### 1/3: Downloading the repository and configuring your setup. 
+
+```bash
+# 1. Clone this repository to your computer.
+git clone https://github.com/sandervandorsten/azure-iothub-demo.git
+# Cloning into 'azure-iothub-demo'...
+# ...
+# Resolving deltas: 100% ..., done.
+
+# 2. navigate into the git repository
+cd azure-iothub-demo
+
+# 3. Create a virtual environment with python 3.7 and install the requirements
+virtualenv -p $(which python3.7) venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# 4. Copy the sanmple.env file to .env file s.t. we can store essential credentials here later
+cp sample.env .env
+
+# 5. Download the azure IoT Hub Extension
+az extension add --name azure-iot
+
+# 6. Save your unique IoT Hub name (see Azure Portal) and DeviceId s.t. we can use them below
+export IoTHubName="rpi-iothub-........."
+export deviceId="MyRaspberryPi"
+
+# 7. Access the connection string for the IoT Hub in your terminal
+az iot hub show-connection-string \
+  --name $IoTHubName \
+  --output table
+#HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=BhkccChKy2ii4SdlXw00/1NtD0p6nssS0MIHoWqZODI=
+
+# 8. Access the Connection String for the DeviceId you've created in IoT Hub. 
+az iot hub device-identity show-connection-string \
+  --hub-name $IoTHubName \
+  --device-id $deviceId \
+  --output table
+#HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;DeviceId=MyRaspberryPi;SharedAccessKey=bHnH82Pn21X0QPVkrFCban/XTEml5zAVR8YkiccgZPQ=
+```
+
+- Now, open the `.env` file with a text editor and replace the string values s.t. it looks like this
+  ```bash
+  DEVICE_ID="MyRaspberryPi"
+  CONNECTION_STRING_SIMULATED_DEVICE="HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;DeviceId=MyRaspberryPi;SharedAccessKey=bHnH82Pn21X0QPVkrFCban/XTEml5zAVR8YkiccgZPQ="
+  CONNECTION_STRING_IOT_HUB="HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=BhkccChKy2ii4SdlXw00/1NtD0p6nssS0MIHoWqZODI="
+  ```
+- Save the .env file and close it. This file will be used 
+
+##### 2/3: kjlasjdfasdf
+
+This queue is named `temperature`, and messages (rows of data) are being sent there from Stream Analytics. 
 
 
 <!-- USAGE EXAMPLES -->
