@@ -21,7 +21,7 @@ def main(msg: func.ServiceBusMessage):
 
     logging.info(f"Python ServiceBus queue trigger processed message: {msg_dict}")
 
-    # Enable a connectino with the IoT Hub. The connectionstring for the IoT Hub
+    # Enable a connection with the IoT Hub. The connectionstring for the IoT Hub
     # is preloaded in the Azure Functions configurations.
     connectino_string_iothub = os.getenv("connectionStringIotHub")
     registry_manager = IoTHubRegistryManager(connectino_string_iothub)
