@@ -1,5 +1,5 @@
 # Project information
-site_name: Azure IoT Hub demo
+site_name: Azure IoT Hub Demo
 site_description: IoT application on Azure to connect a RaspberryPi to IoT Hub. 
 site_author: Sander van Dorsten
 site_url: https://sandervandorsten.github.io/azure-iothub-demo/
@@ -25,11 +25,21 @@ theme:
       code: Roboto Mono
     features:
       - instant
-      - tabs
 
     
+nav:
+  - Azure IoT Hub Demo: index.md
+  - Deploying Infrastructure: deploy.md
+  - Installing Services: 
+    - "IoT Hub: Registering A Device": Installation/iot-hub.md
+    - "Stream Analytics: Starting the analysis job": Installation/stream-analytics.md
+    - "Azure Function: Deploying a function": Installation/function.md
+  - Usage:
+      - Using a Simulated RaspberryPi: Usage/simulated-pi.md
+      - Using a Real RaspberryPi: Usage/raspberry-pi.md
+  - External links: links.md
 
-      # Extras
+# Extras
 extra:
     social:
       - icon: fontawesome/brands/github-alt
@@ -40,7 +50,16 @@ extra:
 # Extensions
 markdown_extensions:
     - admonition
+    - pymdownx.superfences
+    - pymdownx.details
+    - pymdownx.emoji
+    - pymdownx.keys
+    - pymdownx.smartsymbols
     - codehilite:
-        guess_lang: false
+        guess_lang: False
+        use_pygments: True
+        noclasses: True
+        linenums: True
+        pygments_style: monokai
     - toc:
         permalink: true

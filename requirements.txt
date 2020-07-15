@@ -5,3 +5,4 @@ azure-functions>1.2.1
 fire>=0.3.1
 mkdocs-material>=5.4.0
 python-dotenv>=0.13.0
+pymdown-extensions>=7.1
