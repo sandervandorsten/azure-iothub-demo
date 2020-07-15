@@ -11,23 +11,23 @@
         <meta name="description" content="IoT application on Azure to connect a RaspberryPi to IoT Hub.">
       
       
-        <link rel="canonical" href="https://sandervandorsten.github.io/azure-iothub-demo/Installation/function/">
+        <link rel="canonical" href="https://sandervandorsten.github.io/azure-iothub-demo/old/">
       
       
         <meta name="author" content="Sander van Dorsten">
       
-      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
-        <title>Azure Function: Deploying a function - Azure IoT Hub Demo</title>
+        <title>Old - Azure IoT Hub Demo</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.fe0cca5b.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#what-is-azure-functions" class="md-skip">
+        <a href="#prerequisites" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Azure Function: Deploying a function
+              Old
             
           </span>
         </div>
@@ -194,7 +194,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Azure IoT Hub Demo" class="md-nav__link">
+    <a href=".." title="Azure IoT Hub Demo" class="md-nav__link">
       Azure IoT Hub Demo
     </a>
   </li>
@@ -206,7 +206,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../deploy/" title="Deploying Infrastructure" class="md-nav__link">
+    <a href="../deploy/" title="Deploying Infrastructure" class="md-nav__link">
       Deploying Infrastructure
     </a>
   </li>
@@ -216,12 +216,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Installing Services
@@ -245,7 +243,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../iot-hub/" title="IoT Hub: Registering A Device" class="md-nav__link">
+    <a href="../Installation/iot-hub/" title="IoT Hub: Registering A Device" class="md-nav__link">
       IoT Hub: Registering A Device
     </a>
   </li>
@@ -257,7 +255,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../stream-analytics/" title="Stream Analytics: Starting the analysis job" class="md-nav__link">
+    <a href="../Installation/stream-analytics/" title="Stream Analytics: Starting the analysis job" class="md-nav__link">
       Stream Analytics: Starting the analysis job
     </a>
   </li>
@@ -267,139 +265,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Azure Function: Deploying a function
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Azure Function: Deploying a function" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../Installation/function/" title="Azure Function: Deploying a function" class="md-nav__link">
       Azure Function: Deploying a function
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-azure-functions" class="md-nav__link">
-    What is Azure Functions?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#downloading-the-repository" class="md-nav__link">
-    Downloading the repository
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-our-functions-application-locally" class="md-nav__link">
-    Running our functions application locally
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#simulating-a-raspberrypi-locally" class="md-nav__link">
-    Simulating a RaspberryPi Locally
-  </a>
-  
-    <nav class="md-nav" aria-label="Simulating a RaspberryPi Locally">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#starting-the-raspberry-pi" class="md-nav__link">
-    Starting the Raspberry Pi
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#debugging" class="md-nav__link">
-    Debugging
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deploying-your-function-app-to-azure" class="md-nav__link">
-    Deploying your function app to Azure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recap" class="md-nav__link">
-    Recap
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -414,7 +284,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../links/" title="External links" class="md-nav__link">
+    <a href="../links/" title="External links" class="md-nav__link">
       External links
     </a>
   </li>
@@ -444,20 +314,6 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-azure-functions" class="md-nav__link">
-    What is Azure Functions?
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     Prerequisites
   </a>
@@ -465,51 +321,66 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#downloading-the-repository" class="md-nav__link">
-    Downloading the repository
+  <a href="#deploying-infrastructure" class="md-nav__link">
+    Deploying Infrastructure
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-our-functions-application-locally" class="md-nav__link">
-    Running our functions application locally
+  <a href="#starting-services" class="md-nav__link">
+    Starting Services
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#simulating-a-raspberrypi-locally" class="md-nav__link">
-    Simulating a RaspberryPi Locally
-  </a>
-  
-    <nav class="md-nav" aria-label="Simulating a RaspberryPi Locally">
+    <nav class="md-nav" aria-label="Starting Services">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
-    Configuration
+  <a href="#registering-a-device-on-iot-hub" class="md-nav__link">
+    Registering a device on IoT Hub
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#starting-the-raspberry-pi" class="md-nav__link">
-    Starting the Raspberry Pi
+  <a href="#starting-the-analysis-job-on-stream-analytics" class="md-nav__link">
+    Starting the analysis job on Stream Analytics
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
+  <a href="#deploying-a-function-to-azure-functions" class="md-nav__link">
+    Deploying a function to Azure Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Deploying a function to Azure Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#14-downloading-the-repository" class="md-nav__link">
+    1/4: Downloading the repository
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#debugging" class="md-nav__link">
-    Debugging
+  <a href="#24-running-our-functions-application-locally" class="md-nav__link">
+    2/4: Running our functions application locally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-simulating-a-raspberrypi-locally" class="md-nav__link">
+    3/4: Simulating a RaspberryPi Locally
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-deploying-your-function-app-to-azure" class="md-nav__link">
+    4/4 Deploying your function app to Azure
   </a>
   
 </li>
@@ -518,25 +389,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#deploying-your-function-app-to-azure" class="md-nav__link">
-    Deploying your function app to Azure
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recap" class="md-nav__link">
-    Recap
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -552,7 +407,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/sandervandorsten/azure-iothub-demo/edit/master/docs/Installation/function.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/sandervandorsten/azure-iothub-demo/edit/master/docs/old.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -560,55 +415,146 @@
                   
                 
                 
-                <h1> <img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/azure-functions-logo.png" alt="Azure Functions Logo" align="left" style="height:40px;padding:5px"> Azure Functions: Deploying a function</h1>
-
-<p><img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/azure-iothub-demo.png" alt="Infrastructure Overview" border="1"></p>
-<h2 id="what-is-azure-functions">What is Azure Functions?<a class="headerlink" href="#what-is-azure-functions" title="Permanent link">&para;</a></h2>
-<p>Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure. A function is "triggered" by a specific type of event. Supported triggers include responding to changes in data, responding to messages, running on a schedule, or as the result of an HTTP request.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>In our application, we're going to start a function when we receive a message on our Service Bus Queue. A function can be deployed within Azure Functions, and can be developed locally on your computer. </p>
+                  <h1>Old</h1>
+                
+                <p>In this step-by-step guide we'll help you set up everything to get your own application up and running. The setup is going to cover the following parts: </p>
+<ol>
+<li><a href="#deploying-infrastructure">Deploying your own copy infrastructure to Azure using ARM templates</a></li>
+<li><a href="#starting-services">Starting and configuring the individual services</a>, specifically:<ol>
+<li><a href="#registering-a-device-on-iot-hub">Registering a (simulated) Raspberry Pi device on IoT Hub</a></li>
+<li><a href="#starting-the-analysis-job-on-stream-analytics">Starting our analysis job on Stream Analytics</a></li>
+<li><a href="#deploying-a-function-to-azure-functions">Deploying a function to Azure Functions</a><ol>
+<li>Downloading the repository</li>
+<li>Running our functions application locally</li>
+<li>Simulating a RaspberryPi Locally</li>
+<li>Deploying your function app to Azure</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
 <ul>
+<li>Azure account with a subscription you are allowed to create resources in (Free Trial Subscription should do)</li>
 <li>Make sure you have <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">installed the Azure CLI</a> on your computer</li>
 <li>basic knowledge of git + python virtual environments</li>
 <li>access to a bash-like terminal</li>
 </ul>
-<h2 id="downloading-the-repository">Downloading the repository<a class="headerlink" href="#downloading-the-repository" title="Permanent link">&para;</a></h2>
-<p>Clone this repository to your computer.
-<div class="highlight"><pre><span></span><code>git clone https://github.com/sandervandorsten/azure-iothub-demo.git
+<h2 id="deploying-infrastructure">Deploying Infrastructure<a class="headerlink" href="#deploying-infrastructure" title="Permanent link">&para;</a></h2>
+<p>I've <a href="https://azure.microsoft.com/en-us/resources/templates/">defined the infrastructure in an ARM template</a>. This allows you to press the button below and deploy the infrastructure to your own Azure account with the click of a button. </p>
+<p><a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsandervandorsten%2Fazure-iothub-demo%2Fmaster%2Finfra%2Fdeployment.json"><img alt="Deploy to Azure" src="https://aka.ms/deploytoazurebutton" /></a></p>
+<ol>
+<li>Press the 'Deploy to Azure' button above to create a custom deployment in Azure</li>
+<li>Login to your Azure Account where you want to create the application (if not logged in yet)</li>
+<li>You should then see the Custom Deployment screen as in the screenshot below. Here you can specify some settings for the Deployment.<ol>
+<li>Select a subscription in which you want to create the resources in</li>
+<li>Create a new resourcegroup in which you want to deploy these resources</li>
+<li>Keep all the other settings as default, unless you know what you're doing and want to change something</li>
+<li>Scroll down, accept the terms and conditions and click Purchase.</li>
+<li><strong>IMPORTANT</strong> Remember that this deployment and the running of it will cost you money. For me, I didn't pay more that a few euros and I let it run for a month or so. Please remember to remove your resources if you're not using them anymore! </li>
+</ol>
+</li>
+<li>After a couple of minutes (+- 5 minutes I guess) your infrastructure deployment should be completed. Navigate to the resource group you've created to see the different services you've deployed. </li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/deploy-infra01.png" alt="Infrastructure Deployment" border="1"></p>
+<h2 id="starting-services">Starting Services<a class="headerlink" href="#starting-services" title="Permanent link">&para;</a></h2>
+<p>You should now have the individual components deployed within your Resource Group. Navigate to your resource group overview, and you'll see something like this.</p>
+<p><img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/resourcegroup-overview.png" alt="Resources" border="1"></p>
+<p>To use our end-to-end application, we must activate and configure some of our individual services. We're going to do that now.  </p>
+<h3 id="registering-a-device-on-iot-hub">Registering a device on IoT Hub<a class="headerlink" href="#registering-a-device-on-iot-hub" title="Permanent link">&para;</a></h3>
+<p><img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/iot-hub-logo.png" alt="IoT Hub Logo" height="100px" align="right">
+The Azure IoT Hub is a managed service, hosted in the cloud, that acts as a central message hub for bi-directional communication between your IoT application and the devices it manages. You can use Azure IoT Hub to build IoT solutions with reliable and secure communications between millions of IoT devices and a cloud-hosted solution backend. You can connect virtually any device to IoT Hub. </p>
+<p><br><br></p>
+<p>Today we're going to connect only one device. To register a device on IoT Hub:
+1. Go to your IoT Hub resource and select the menu blade <strong>IoT Devices</strong> (see screenshot below)
+2. Register a New device by clicking <strong>+ New</strong>
+3. In the "Create a Device" tab, <strong>write down a Device ID</strong>, for example <code>MyRaspberryPi</code>. This should be a identifier unique within the IoT Hub.
+4. Leave everything else to it's default values and press <strong>Save</strong>. 
+5. <strong>You have succesfully registered a device on IoT Hub</strong>! You will come back to this screen later to <strong>copy the (Primary) Connection String to your local configuration file (your <code>.env</code> file)</strong> to allow your device to connect to IoT Hub. We will do this later though, once we're doing configuring the infrastructure.</p>
+<p><img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/iothub-register01.png" alt="Resources" border="1"></p>
+<h3 id="starting-the-analysis-job-on-stream-analytics">Starting the analysis job on Stream Analytics<a class="headerlink" href="#starting-the-analysis-job-on-stream-analytics" title="Permanent link">&para;</a></h3>
+<p><img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/stream-analytics-logo.png" alt="Stream Analytics Logo" height="100px" align="right"></p>
+<p>Azure Stream Analytics is a real-time analytics and complex event-processing engine that is designed to analyze and process high volumes of fast streaming data from multiple sources simultaneously. Patterns can be identified from a number of input sources including devices, sensors and applications. These patterns can be used to trigger actions and initiate workflows such as creating alerts, feeding information to a reporting tool, or storing transformed data for later use. </p>
+<p><br><br></p>
+<p>We will use Stream Analytics to ingest data from IoT Hub and move it to both Blob Storage and a Service Bus Queue for more complex actions. This is already configured for you when the infrastructure was deployed, the only thing we need to do is <strong>Start the Streaming Job</strong>.</p>
+<ol>
+<li><strong>Navigate to your Stream Analytics resource</strong> and you will see the the <strong>Overview page</strong>. </li>
+<li>On the bottom right you will see the <strong>Query</strong> that is already pre-defined. This query does 2 things. (it shown below as well for convenience)<ol>
+<li>it moves all data from the <strong>input called</strong> <code>iothub</code> <strong>to the output called <code>blobstorage</code></strong></li>
+<li>it moves all data where <code>temperature &gt; 29</code> from the <strong>input called</strong> <code>iothub</code> <strong>to the output called</strong> <code>servicebus</code>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
+    <span class="o">*</span>
+<span class="k">INTO</span>
+    <span class="n">blobstorage</span>
+<span class="k">FROM</span>
+    <span class="n">iothub</span>
+
+<span class="k">SELECT</span>
+    <span class="o">*</span>
+<span class="k">INTO</span>
+    <span class="n">servicebus</span>
+<span class="k">FROM</span>
+    <span class="n">iothub</span>
+<span class="k">WHERE</span>
+    <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">29</span>
+</code></pre></div></li>
+</ol>
+</li>
+<li>If you want to learn how this input and outputs are actually coupled to the IoT Hub and Service Bus in our infrastructure, you can navigate to the menu blades on the left of your screen called <strong>inputs</strong> and <strong>outputs</strong> (under <strong>Job Topology</strong>). At deployment time, the bindings to these services were already done for you so you don't have to worry about them. If you want to learn how to create these yourself, <strong>I recommend <a href="https://www.youtube.com/watch?v=NbGmyjgY0pU">This video</a> by Adam Marczak</strong> on Azure Stream Analytics. I fact, I recommend all his Azure tutorials, which helped me a great deal in developing this project.</li>
+<li>Now you know roughly what happens in Stream Analytics, we can <strong>start this Stream Analytics Job</strong> to start processing incoming requests. Remember that we're not sending any data from a device yet to our application, but we're just preconfiguring the infrastrature. Press the <strong>&gt; Start</strong> button <strong>at the top of the Overview</strong> menu to start the job. It takes about a minute or two to activate, you can see the status straight below it. (see screenshot below)</li>
+<li>You have sucessfully started your Steam Analytics job! In a bit, our Raspberry Pi Data will flow through this job to the connected services. Now it's not doing anything yet though, So lets quickly finish up our infrastructure setup to start sending data. </li>
+<li><strong>Cost saving Tip:</strong> Pause your stream Analytics job once your done developing. You don't pay per request, but per hour. </li>
+</ol>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/streaming.png" alt="Stream Analytics" border="2" height="100%">
+</p>
+
+<h3 id="deploying-a-function-to-azure-functions">Deploying a function to Azure Functions<a class="headerlink" href="#deploying-a-function-to-azure-functions" title="Permanent link">&para;</a></h3>
+<p><img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/azure-functions-logo.png" alt="Azure Functions Logo" height="100px" align="right">
+Azure Functions is a serverless compute service that lets you run event-triggered code without having to explicitly provision or manage infrastructure. A function is "triggered" by a specific type of event. Supported triggers include responding to changes in data, responding to messages, running on a schedule, or as the result of an HTTP request.</p>
+<p><br><br></p>
+<p>In our application, we're going to start a function when we receive a message on our Service Bus Queue. A function can be deployed within Azure Functions, and can be developed locally on your computer. We're going to deploy a function that I already prepared for this demo.</p>
+<p>Make sure you have <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">installed the Azure CLI</a> on your computer. you can test this by running <code>az --version</code> in your terminal. </p>
+<h4 id="14-downloading-the-repository">&frac14;: Downloading the repository<a class="headerlink" href="#14-downloading-the-repository" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Clone this repository to your computer.</span>
+git clone https://github.com/sandervandorsten/azure-iothub-demo.git
 <span class="c1"># Cloning into &#39;azure-iothub-demo&#39;...</span>
 <span class="c1"># ...</span>
 <span class="c1"># Resolving deltas: 100% ..., done.</span>
-</code></pre></div></p>
-<p>Navigate into the git repository
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> azure-iothub-demo
-</code></pre></div></p>
-<p>Create a virtual environment with python 3.7 and install the requirements
-<div class="highlight"><pre><span></span><code>virtualenv -p <span class="k">$(</span>which python3.7<span class="k">)</span> venv
+
+<span class="c1"># 2. navigate into the git repository</span>
+<span class="nb">cd</span> azure-iothub-demo
+
+<span class="c1"># 3. Create a virtual environment with python 3.7 and install the requirements</span>
+virtualenv -p <span class="k">$(</span>which python3.7<span class="k">)</span> venv
 <span class="nb">source</span> venv/bin/activate
 pip install -r requirements.txt
-</code></pre></div></p>
-<h2 id="running-our-functions-application-locally">Running our functions application locally<a class="headerlink" href="#running-our-functions-application-locally" title="Permanent link">&para;</a></h2>
-<p>Now we have our code and python environment locally, we can test our function app locally before we deploy it to our cloud project. </p>
-<p>The code that will be run in the function can be found in <a href="https://github.com/sandervandorsten/azure-iothub-demo/blob/master/src/azure_functions/ServiceBusQueueTriggerTemperature/__init__.py"><code>src/azure_functions/ServiceBusQueueTriggerTemperature/__init__.py</code></a> in this repository, you can check it out if you like. </p>
-<p>To start our function app locally:</p>
-<p>Navigate to the folder containing the source code for Azure Functions
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> src/azure_functions
 </code></pre></div>
-Download the application settings from the cloud.  These are the environment variables that will be used to connect Azure Functions  to different services, such as storage and the IoT Hub. it will store the configuration files automatically in <code>src/azure_functions/local.settings.json</code>. </p>
-<details class="note" open="open"><summary>Replace the functionapp-.... name</summary><p>Remember that you should replace the functionapp name with your own!!</p>
-</details>
-<div class="highlight"><pre><span></span><code>func azure functionapp fetch-app-settings functionapp-pndvv72m6ihab
+
+<h4 id="24-running-our-functions-application-locally">2/4: Running our functions application locally<a class="headerlink" href="#24-running-our-functions-application-locally" title="Permanent link">&para;</a></h4>
+<p>Now we have our code and python environment locally, we can test our function app locally before we deploy it to our cloud project. </p>
+<p>The code that will be run in the function can be found in <code>src/azure_functions/ServiceBusQueueTriggerTemperature/__init__.py</code> in this repository, you can check it out if you like. </p>
+<p>To start our function app locally:
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Navigate to the folder containing the source code for Azure Functions</span>
+<span class="nb">cd</span> src/azure_functions
+
+<span class="c1"># 2. Download the application settings from the cloud. </span>
+<span class="c1"># These are the environment variables that will be used to connect Azure Functions </span>
+<span class="c1"># to different services, such as storage and the IoT Hub.</span>
+<span class="c1"># it will store the configuration files automatically in `src/azure_functions/local.settings.json`.</span>
+<span class="c1"># Note that you should replace the functionapp name with your own!!</span>
+func azure functionapp fetch-app-settings functionapp-pndvv72m6ihab
 <span class="c1"># App Settings:</span>
 <span class="c1"># Loading FUNCTIONS_WORKER_RUNTIME = *****</span>
 <span class="c1"># Loading FUNCTIONS_EXTENSION_VERSION = *****</span>
 <span class="c1"># Loading AzureWebJobsStorage = *****</span>
 <span class="c1"># Loading connectionStringListenServiceBus = *****</span>
 <span class="c1"># Loading connectionStringIotHub = *****</span>
-</code></pre></div>
 
-<p>Start the function app locally. This will start a local webserver on port <code>7071</code>. Our function should then run locally on your computer, but listens to the Service Bus Queue in the cloud. 
-<div class="highlight"><pre><span></span><code>func start
+<span class="c1"># 3. Start the function app locally. This will start a local webserver on port 7071. </span>
+<span class="c1"># Our function should then run locally on your computer, </span>
+<span class="c1"># but listens to the Service Bus Queue in the cloud. </span>
+func start
 <span class="c1"># Found Python version 3.7.5 (python3).</span>
 
 <span class="c1">#                   %%%%%%</span>
@@ -627,52 +573,49 @@ Download the application settings from the cloud.  These are the environment var
 <span class="c1"># Now listening on: http://0.0.0.0:7071</span>
 <span class="c1"># Application started. Press Ctrl+C to shut down.</span>
 </code></pre></div></p>
-<h2 id="simulating-a-raspberrypi-locally">Simulating a RaspberryPi Locally<a class="headerlink" href="#simulating-a-raspberrypi-locally" title="Permanent link">&para;</a></h2>
+<h4 id="34-simulating-a-raspberrypi-locally">&frac34;: Simulating a RaspberryPi Locally<a class="headerlink" href="#34-simulating-a-raspberrypi-locally" title="Permanent link">&para;</a></h4>
 <p>Running our function app was the last step of infrastructure that we should enable before we can start testing our whole setup. Now, we need to connect a IoT Device to the IoT Hub s.t. we can send device-to-cloud telemetry towards our cloud application, and receive cloud-to-device messages from our function app. I've created a Raspberry Pi Interface in <code>azure-iothub-demo/src/iothub/device.py</code> that we're going to use to <strong>simulate a Raspberry Pi</strong>. You can connect your own raspberry Pi to do the actual work, but this is (currently) beyond the scope of this tutorial. </p>
 <p>To start a Raspberry Pi simulation, open an extra terminal window (leaving the one running the function app open!) and running the following snippets:</p>
-<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
-<p>Navigate to the azure-iothub-demo folder and activate the virtual environment in this terminal as well
-<div class="highlight"><pre><span></span><code><span class="nb">source</span> venv/bin/activate
-</code></pre></div>
-Copy the <code>sample.env</code> file to <code>.env</code> file s.t. we can store essential credentials here later
-<div class="highlight"><pre><span></span><code>cp sample.env .env
-</code></pre></div></p>
-<p>Download the azure IoT Hub Extension to interact with your cloud application
-<div class="highlight"><pre><span></span><code>az extension add --name azure-iot
-</code></pre></div></p>
-<p>Save your unique IoT Hub name (see your own Azure Portal with the name of your Iot Hub resource Name) and DeviceId s.t. we can use them below
-<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">IoTHubName</span><span class="o">=</span><span class="s2">&quot;rpi-iothub-.........&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># 0. Navigate to the azure-iothub-demo folder and activate the virtual environment in this terminal as well</span>
+<span class="nb">source</span> venv/bin/activate
+
+<span class="c1"># 1. Copy the sanmple.env file to .env file s.t. we can store essential credentials here later</span>
+cp sample.env .env
+
+<span class="c1"># 2. Download the azure IoT Hub Extension to interact with our cloud application</span>
+az extension add --name azure-iot
+
+<span class="c1"># 3. Save your unique IoT Hub name (see your own Azure Portal with the name of your Iot Hub resource Name) and DeviceId s.t. we can use them below</span>
+<span class="nb">export</span> <span class="nv">IoTHubName</span><span class="o">=</span><span class="s2">&quot;rpi-iothub-.........&quot;</span>
 <span class="nb">export</span> <span class="nv">deviceId</span><span class="o">=</span><span class="s2">&quot;MyRaspberryPi&quot;</span>
-</code></pre></div>
-Access the connection string for the IoT Hub in your terminal
-<div class="highlight"><pre><span></span><code>az iot hub show-connection-string <span class="se">\</span>
+
+<span class="c1"># 4. Access the connection string for the IoT Hub in your terminal</span>
+az iot hub show-connection-string <span class="se">\</span>
   --name <span class="nv">$IoTHubName</span> <span class="se">\</span>
   --output table
 <span class="c1">#HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=BhkccChKy2ii4SdlXw00/1NtD0p6nssS0MIHoWqZODI=</span>
-</code></pre></div>
-Access the Connection String for the DeviceId you've created in IoT Hub. 
-<div class="highlight"><pre><span></span><code>az iot hub device-identity show-connection-string <span class="se">\</span>
+
+<span class="c1"># 5. Access the Connection String for the DeviceId you&#39;ve created in IoT Hub. </span>
+az iot hub device-identity show-connection-string <span class="se">\</span>
   --hub-name <span class="nv">$IoTHubName</span> <span class="se">\</span>
   --device-id <span class="nv">$deviceId</span> <span class="se">\</span>
   --output table
 <span class="c1">#HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;DeviceId=MyRaspberryPi;SharedAccessKey=bHnH82Pn21X0QPVkrFCban/XTEml5zAVR8YkiccgZPQ=</span>
-</code></pre></div></p>
-<p>Now, <strong>open the</strong> <code>.env</code> <strong>file</strong> with a text editor and replace the string values s.t. it looks like this
+</code></pre></div>
+
+<ul>
+<li>Now, <strong>open the</strong> <code>.env</code> <strong>file</strong> with a text editor and replace the string values s.t. it looks like this
   <div class="highlight"><pre><span></span><code><span class="nv">DEVICE_ID</span><span class="o">=</span><span class="s2">&quot;MyRaspberryPi&quot;</span>
 <span class="nv">CONNECTION_STRING_IOT_DEVICE</span><span class="o">=</span><span class="s2">&quot;HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;DeviceId=MyRaspberryPi;SharedAccessKey=bHnH82Pn21X0QPVkrFCban/XTEml5zAVR8YkiccgZPQ=&quot;</span>
 <span class="nv">CONNECTION_STRING_IOT_HUB</span><span class="o">=</span><span class="s2">&quot;HostName=rpi-iothub-pndvv72m6ihab.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=BhkccChKy2ii4SdlXw00/1NtD0p6nssS0MIHoWqZODI=&quot;</span>
-</code></pre></div>
-Save the .env file and close it. </p>
-<details class="warning" open="open"><summary>.env file</summary><p><strong>This file contains credentials and should not be shared, or stored publicly!</strong> </p>
-</details>
-<h3 id="starting-the-raspberry-pi">Starting the Raspberry Pi<a class="headerlink" href="#starting-the-raspberry-pi" title="Permanent link">&para;</a></h3>
-<p>Now the configuration is finished, <strong>you can start the RaspberryPi simulation</strong>. the Simulated Raspberry Pi will:</p>
-<ul>
+</code></pre></div></li>
+<li>Save the .env file and close it. . <strong>This file contains credentials and should not be shared, or stored publicly!</strong> </li>
+<li>Now the configuration is finished, <strong>you can start the RaspberryPi simulation</strong>. the Simulated Raspberry Pi will:</li>
 <li>send a random temperature value every 3 seconds to the IoT Hub.</li>
 <li>listen to it's IoT Hub for messages. Our function app will send messages to the device through the IoT Hub to start the fan if <code>temperature &gt; 29</code> (as configured in our Stream Analytics Job). The fan will then be turned on for 10 seconds, and deactivated afterwards. Hence, if the temperature will stay above 29 degrees, the fan will stay on because the RaspberryPi will keep receiving messages to turn on the fan.</li>
-</ul>
-<p>navigate to the iothub folder and run the Raspberry Pi simulation
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span> src/iothub
+<li><strong>To start the Raspberry Pi simulation</strong>, re-use the second terminal window and execute the following commands: 
+  <div class="highlight"><pre><span></span><code><span class="c1"># 6. navigate to the iothub folder and run the Raspberry Pi simulation</span>
+<span class="nb">cd</span> src/iothub
 python main.py --RPi SimulatedRaspberryPi
 <span class="c1"># IoT Hub device sending periodic messages, press Ctrl-C to exit</span>
 <span class="c1"># Sending message: {&quot;temperature&quot;: 33.794175910136936, &quot;fan_active&quot;: false}</span>
@@ -680,9 +623,9 @@ python main.py --RPi SimulatedRaspberryPi
 <span class="c1"># Sending message: {&quot;temperature&quot;: 22.667180109040924, &quot;fan_active&quot;: false}</span>
 <span class="c1"># Message sent</span>
 <span class="c1"># ...</span>
-</code></pre></div></p>
-<p>Once the Raspberry Pi sends a message with a <code>temperature &gt; 29</code>, this message will be forwarded by the Stream Analytics Job to the Service Bus Queue. Once this message arrives on the Service Bus Queue, it will trigger the Function app (that is running locally on your computer), which sends a message through the IoTHub to the device that the fan should be activated. <strong>The logs in your terminal of your function app should look something like this:</strong></p>
-<div class="highlight"><pre><span></span><code>[7/14/2020 9:53:43 AM] Executing &#39;Functions.ServiceBusQueueTriggerTemperature&#39; (Reason=&#39;New ServiceBus message detected on &#39;temperature&#39;.&#39;, Id=161614bf-3d3a-40f7-8608-7e2c88d08ba0)
+</code></pre></div></li>
+<li>Once the Raspberry Pi sends a message with a <code>temperature &gt; 29</code>, this message will be forwarded by the Stream Analytics Job to the Service Bus Queue. Once this message arrives on the Service Bus Queue, it will trigger the Function app (that is running locally on your computer), which sends a message through the IoTHub to the device that the fan should be activated. <strong>The logs in your terminal of your function app should look something like this:</strong>
+  <div class="highlight"><pre><span></span><code>[7/14/2020 9:53:43 AM] Executing &#39;Functions.ServiceBusQueueTriggerTemperature&#39; (Reason=&#39;New ServiceBus message detected on &#39;temperature&#39;.&#39;, Id=161614bf-3d3a-40f7-8608-7e2c88d08ba0)
 [7/14/2020 9:53:43 AM] Trigger Details: MessageId: a5f9ddcd698142e495a1cec97f954071, DeliveryCount: 10, EnqueuedTime: 7/14/2020 9:53:42 AM, LockedUntil: 7/14/2020 9:58:43 AM, SessionId: 18725
 [7/14/2020 9:53:43 AM]  INFO: Received FunctionInvocationRequest, request ID: 2f46689a-8f66-4dab-88da-6381e553e3f2, function ID: 4065367e-45d4-45f3-bb6e-416b2fdeed51, invocation ID: 161614bf-3d3a-40f7-8608-7e2c88d08ba0
 [7/14/2020 9:53:43 AM] Python ServiceBus queue trigger processed message: {&#39;temperature&#39;: 30.463195551136046, &#39;fan_active&#39;: 1, &#39;EventProcessedUtcTime&#39;: &#39;2020-07-14T09:53:36.6114953Z&#39;, &#39;PartitionId&#39;: 1, &#39;EventEnqueuedUtcTime&#39;: &#39;2020-07-14T09:53:36.5600000Z&#39;, &#39;IoTHub&#39;: {&#39;MessageId&#39;: None, &#39;CorrelationId&#39;: None, &#39;ConnectionDeviceId&#39;: &#39;MyRaspberryPi&#39;, &#39;ConnectionDeviceGenerationId&#39;: &#39;637298794990585953&#39;, &#39;EnqueuedTime&#39;: &#39;2020-07-14T09:53:36.0000000&#39;, &#39;StreamId&#39;: None}}
@@ -691,39 +634,25 @@ python main.py --RPi SimulatedRaspberryPi
 [7/14/2020 9:53:43 AM] Device Method payload    : {}
 [7/14/2020 9:53:43 AM] Response status          : 200
 [7/14/2020 9:53:43 AM] Response payload         : {&#39;Response&#39;: &#39;The fan has been (re)activated at 2020-07-14 11:53:43.095383&#39;}
-</code></pre></div>
-
-<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
-<p>You should now have <strong>two terminal windows open</strong>. One with a locally running function app, and one with a Simulated Raspberry Pi. Messages should be flowing back and forth between the services. </p>
-<h3 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h3>
-<p>If this is not the case:</p>
-<ul>
+</code></pre></div></li>
+<li>You should now have <strong>two terminal windows open</strong>. One with a locally running function app, and one with a Simulated Raspberry Pi. Messages should be flowing back and forth between the services. If this is not the case:</li>
 <li>Check if your <code>.env</code> file is configured correctly s.t. your Simulated Raspberry Pi can send data to the cloud.</li>
-<li>Make sure your Stream Analytics Job is running (see: <a href="../stream-analytics/">Starting the analysis job on Stream Analytics</a>)</li>
-<li>
-<p>Verify if messages are received on the cloud by checking </p>
-<ul>
+<li>Make sure your Stream Analytics Job is running (see: <a href="starting-the-analysis-job-on-stream-analytics">Starting the analysis job on Stream Analytics</a>)</li>
+<li>Verify if messages are received on the cloud by checking <ul>
 <li>if data is written to the storage account container named <code>temperature</code>. This should contain one or multiple jsonfiles with data from the Raspberry Pi.</li>
-<li>if messages are sent to the Service Bus Queue. You can navigate in the Azure Portal to the Queue and look if there are messages in the Queue. </li>
+<li>if messages are sent to the Service Bus Queue. You can navigate in the Azure Portal to the Queue and look if there are messages in the Queue. <strong>Remember that if your function app is running locally, it will consume all messages on that queue instantly, hence the queue will become empty almost instantaniously whilst the function app is running.</strong> </li>
 </ul>
-<details class="warning" open="open"><summary>Empty Service Bus Queue</summary><p>Remember that if your function app is running (locally), <strong>it will consume all messages on that queue instantly</strong>, hence the queue will become empty almost instantaniously whilst the function app is running. </p>
-</details>
 </li>
 </ul>
-<h2 id="deploying-your-function-app-to-azure">Deploying your function app to Azure<a class="headerlink" href="#deploying-your-function-app-to-azure" title="Permanent link">&para;</a></h2>
-<p>Now your function app is tested locally, you can deploy it to Azure. You can stop the services in both terminals.</p>
-<p>Deploy the function to Azure. (replace the function app name with your own)
-<div class="highlight"><pre><span></span><code>func azure functionapp publish functionapp-pndvv72m6ihab
+<h4 id="44-deploying-your-function-app-to-azure">4/4 Deploying your function app to Azure<a class="headerlink" href="#44-deploying-your-function-app-to-azure" title="Permanent link">&para;</a></h4>
+<p>Now your function app is tested locally, you can deploy it to Azure. You can stop the services in both terminals, and execute the following command:
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. Deploy the function to Azure. (replace the function app name with your own)</span>
+func azure functionapp publish functionapp-pndvv72m6ihab
 </code></pre></div>
 This will use the Azure Functions library to deploy your function to the cloud. after a minute or so you can open the Azure Portal, navigate to your function app and find your function deployed and well.</p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/functionapp.png" alt="Function App" border="2" height="100%" width="100%">
 </p>
-
-<h2 id="recap">Recap<a class="headerlink" href="#recap" title="Permanent link">&para;</a></h2>
-<p>test</p>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>test</p>
                 
               
               
@@ -738,41 +667,6 @@ This will use the Azure Functions library to deploy your function to the cloud. 
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../stream-analytics/" title="Stream Analytics: Starting the analysis job" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Stream Analytics: Starting the analysis job
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../../links/" title="External links" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                External links
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -816,15 +710,15 @@ This will use the Azure Functions library to deploy your function to the cloud. 
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
-          base: "../..",
+          base: "..",
           features: ["instant"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
+            worker: "../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
