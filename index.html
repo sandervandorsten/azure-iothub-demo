@@ -359,6 +359,60 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Usage
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Usage" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="Usage/simulated-pi/" title="Using a Simulated RaspberryPi" class="md-nav__link">
+      Using a Simulated RaspberryPi
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="Usage/raspberry-pi/" title="Using a Real RaspberryPi" class="md-nav__link">
+      Using a Real RaspberryPi
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
   <li class="md-nav__item">
     <a href="links/" title="External links" class="md-nav__link">
       External links
@@ -459,23 +513,7 @@
                   
                 
                 
-                <!-- PROJECT SHIELDS -->
-
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
-<!-- [![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url] -->
-
-<!-- PROJECT LOGO -->
-
-<h1 id="azure-iot-hub-demo">Azure IoT Hub Demo<a class="headerlink" href="#azure-iot-hub-demo" title="Permanent link">&para;</a></h1>
+                <h1 id="azure-iot-hub-demo">Azure IoT Hub Demo<a class="headerlink" href="#azure-iot-hub-demo" title="Permanent link">&para;</a></h1>
 <p align="center">
     <img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/azure-iothub-demo.png" alt="Infrastructure Overview" border="1">
 </p>
@@ -488,11 +526,6 @@
     <a href="https://github.com/sandervandorsten/azure-iothub-demo/issues" target="_blank">
         <img src="https://img.shields.io/github/issues/sandervandorsten/azure-iothub-demo.svg?" alt="Github Issues">
     </a>
-    <a href="https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/" target="_blank">
-        <img src="https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/shield.svg" alt="PyUp">
-    </a>
-    <a href="https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/"><img src="https://pyup.io/repos/github/sandervandorsten/azure-iothub-demo/shield.svg" alt="Updates" /></a>
-
     <a href="https://github.com/psf/black" target="_blank">
         <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style">
     </a>
@@ -518,7 +551,7 @@
 <ul>
 <li>The possibility to simulate a Raspberry Pi from your computer to speed up development</li>
 <li>Simple data storage in a container for 'cold' analysis</li>
-<li>data flowing through Stream Analytics to perform live analysis and send this along to other Azure Services</li>
+<li>Data flowing through Stream Analytics to perform live analysis and send this along to other Azure Services</li>
 <li>Infrastructure as code using ARM templates so you can deploy your own easily<ul>
 <li>Estimated costs: <strong>&lt; 10EUR / Month</strong> (if you set IoT Hub to use a free account, limited to 1 per subscription)</li>
 </ul>

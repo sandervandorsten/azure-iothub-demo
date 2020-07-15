@@ -11,7 +11,7 @@
         <meta name="description" content="IoT application on Azure to connect a RaspberryPi to IoT Hub.">
       
       
-        <link rel="canonical" href="https://sandervandorsten.github.io/azure-iothub-demo/Installation/stream-analytics/">
+        <link rel="canonical" href="https://sandervandorsten.github.io/azure-iothub-demo/Usage/raspberry-pi/">
       
       
         <meta name="author" content="Sander van Dorsten">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Stream Analytics: Starting the analysis job - Azure IoT Hub Demo</title>
+        <title>Using a Real RaspberryPi - Azure IoT Hub Demo</title>
       
     
     
@@ -65,11 +65,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#what-is-stream-analytics" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -94,7 +89,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Stream Analytics: Starting the analysis job
+              Using a Real RaspberryPi
             
           </span>
         </div>
@@ -216,12 +211,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Installing Services
@@ -245,8 +238,76 @@
 
 
   <li class="md-nav__item">
-    <a href="../iot-hub/" title="IoT Hub: Registering A Device" class="md-nav__link">
+    <a href="../../Installation/iot-hub/" title="IoT Hub: Registering A Device" class="md-nav__link">
       IoT Hub: Registering A Device
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Installation/stream-analytics/" title="Stream Analytics: Starting the analysis job" class="md-nav__link">
+      Stream Analytics: Starting the analysis job
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Installation/function/" title="Azure Function: Deploying a function" class="md-nav__link">
+      Azure Function: Deploying a function
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Usage
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Usage" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        Usage
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../simulated-pi/" title="Using a Simulated RaspberryPi" class="md-nav__link">
+      Using a Simulated RaspberryPi
     </a>
   </li>
 
@@ -263,81 +324,10 @@
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Stream Analytics: Starting the analysis job
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Stream Analytics: Starting the analysis job" class="md-nav__link md-nav__link--active">
-      Stream Analytics: Starting the analysis job
+    <a href="./" title="Using a Real RaspberryPi" class="md-nav__link md-nav__link--active">
+      Using a Real RaspberryPi
     </a>
     
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-stream-analytics" class="md-nav__link">
-    What is Stream Analytics
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recap" class="md-nav__link">
-    Recap
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../function/" title="Azure Function: Deploying a function" class="md-nav__link">
-      Azure Function: Deploying a function
-    </a>
   </li>
 
         
@@ -365,70 +355,12 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-is-stream-analytics" class="md-nav__link">
-    What is Stream Analytics
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    Usage
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recap" class="md-nav__link">
-    Recap
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    Next Steps
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/sandervandorsten/azure-iothub-demo/edit/master/docs/Installation/stream-analytics.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/sandervandorsten/azure-iothub-demo/edit/master/docs/Usage/raspberry-pi.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -436,55 +368,9 @@
                   
                 
                 
-                <h1> <img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/stream-analytics-logo.png" alt="Stream Analytics Logo" alt="IoT Hub Logo" align="left" style="height:40px;padding:5px"> Stream Analytics: Starting the Analysis Job</h1>
+                <h1> <img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/rpi.svg" alt="Raspberry Pi logo" align="left" style="height:40px;padding:5px"> Using a real Raspberry Pi</h1>
 
-<h2 id="what-is-stream-analytics">What is Stream Analytics<a class="headerlink" href="#what-is-stream-analytics" title="Permanent link">&para;</a></h2>
-<p>Azure Stream Analytics is a real-time analytics and complex event-processing engine that is designed to analyze and process high volumes of fast streaming data from multiple sources simultaneously. Patterns can be identified from a number of input sources including devices, sensors and applications. These patterns can be used to trigger actions and initiate workflows such as creating alerts, feeding information to a reporting tool, or storing transformed data for later use. </p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<p>We will use Stream Analytics to ingest data from IoT Hub and move it to both Blob Storage and a Service Bus Queue for more complex actions. This is already configured for you when the infrastructure was deployed, the only thing we need to do is <strong>Start the Streaming Job</strong>.</p>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<ol>
-<li><strong>Navigate to your Stream Analytics resource</strong> and you will see the the <strong>Overview page</strong>. </li>
-<li>On the bottom right you will see the <strong>Query</strong> that is already pre-defined. This query does 2 things. (it shown below as well for convenience)<ol>
-<li>it moves all data from the <strong>input called</strong> <code>iothub</code> <strong>to the output called <code>blobstorage</code></strong></li>
-<li>it moves all data where <code>temperature &gt; 29</code> from the <strong>input called</strong> <code>iothub</code> <strong>to the output called</strong> <code>servicebus</code>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
-    <span class="o">*</span>
-<span class="k">INTO</span>
-    <span class="n">blobstorage</span>
-<span class="k">FROM</span>
-    <span class="n">iothub</span>
-
-<span class="k">SELECT</span>
-    <span class="o">*</span>
-<span class="k">INTO</span>
-    <span class="n">servicebus</span>
-<span class="k">FROM</span>
-    <span class="n">iothub</span>
-<span class="hll"><span class="k">WHERE</span>
-</span><span class="hll">    <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">29</span>
-</span></code></pre></div></li>
-</ol>
-</li>
-<li>
-<p>If you want to learn how this input and outputs are actually coupled to the IoT Hub and Service Bus in our infrastructure, you can navigate to the menu blades on the left of your screen called <strong>inputs</strong> and <strong>outputs</strong> (under <strong>Job Topology</strong>). At deployment time, the bindings to these services were already done for you so you don't have to worry about them.</p>
-<details class="tip"><summary>Creating input and output bindings</summary><p>If you want to learn how to create these yourself, <strong>I recommend <a href="https://www.youtube.com/watch?v=NbGmyjgY0pU">This video</a> by Adam Marczak</strong> on Azure Stream Analytics. I fact, I recommend all his Azure tutorials, which helped me a great deal in developing this project.</p>
-</details>
-</li>
-<li>
-<p>Now you know roughly what happens in Stream Analytics, we can <strong>start this Stream Analytics Job</strong> to start processing incoming requests. Remember that we're not sending any data from a device yet to our application, but we're just preconfiguring the infrastrature. Press the <strong>&gt; Start</strong> button <strong>at the top of the Overview</strong> menu to start the job. It takes about a minute or two to activate, you can see the status straight below it. (see screenshot below)</p>
-</li>
-</ol>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/sandervandorsten/azure-iothub-demo/master/images/streaming.png" alt="Stream Analytics" border="2" height="100%">
-</p>
-
-<h2 id="recap">Recap<a class="headerlink" href="#recap" title="Permanent link">&para;</a></h2>
-<p>You have sucessfully started your Steam Analytics job! In a bit, our Raspberry Pi Data will flow through this job to the connected services. Now it's not doing anything yet though, So lets quickly finish up our infrastructure setup to start sending data. </p>
-<details class="warning" open="open"><summary>Cost Saving Tip</summary><p>Pause your stream Analytics job once your done developing. <strong>You don't pay per request, but per hour.</strong></p>
-</details>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>The last service we need to get up and running is <a href="../function/">Azure Function</a></p>
+<p>Currently not implemented yet, but you could use <a href="https://www.hackster.io/23021/weather-station-v-3-0-b8b8bc">this tutorial</a> or a similar one to connect your own!</p>
                 
               
               
@@ -503,7 +389,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../iot-hub/" title="IoT Hub: Registering A Device" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../simulated-pi/" title="Using a Simulated RaspberryPi" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -512,19 +398,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                IoT Hub: Registering A Device
+                Using a Simulated RaspberryPi
               </div>
             </div>
           </a>
         
         
-          <a href="../function/" title="Azure Function: Deploying a function" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../links/" title="External links" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Azure Function: Deploying a function
+                External links
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
