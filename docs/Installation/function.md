@@ -10,6 +10,7 @@ In our application, we're going to start a function when we receive a message on
 
 ## Prerequisites
 - Make sure you have [installed the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) on your computer
+- Install the **Azure Functions Core Tools v3** using installation instructions for your machine [on the official documentation website](https://github.com/Azure/azure-functions-core-tools). 
 - basic knowledge of git + python virtual environments
 - access to a bash-like terminal
 
